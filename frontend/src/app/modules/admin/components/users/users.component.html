@@ -1,0 +1,13 @@
+<h1 class="text-center">Users</h1>
+<app-users-actions
+  (filtersEvent)="applyFilters($event)"
+  (newUserEvent)="createUser($event)"
+></app-users-actions>
+<app-data-table
+  *ngIf="filteredUsers"
+  [dataList]="filteredUsers"
+  [columns]="columns"
+  (deleteEvent)="deleteUser($event)"
+  (viewEvent)="viewUser($event)"
+  (updateEvent)="updateUser($event)"
+></app-data-table>

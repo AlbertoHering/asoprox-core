@@ -1,0 +1,54 @@
+<nav class="flex-shrink-0 p-3 d-md-block d-lg-block">
+  <div class="text-center">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item" *ngFor="let route of routes">
+      <ng-container *ngIf="route.children; else simpleRoute">
+        <a
+          type="button"
+          class="nav-link text-white d-flex align-items-center"
+          data-toggle="collapse"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#' + route.id"
+          [attr.aria-controls]="route.id"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <mat-icon class="nav-icons nav-r-space">{{ route.icon }} </mat-icon
+          >{{ route.title }}
+        </a>
+      </ng-container>
+
+      <ng-template #simpleRoute>
+        <a
+          class="nav-link text-white d-flex align-items-center"
+          data-toggle="collapse"
+          [routerLink]="route.path"
+          routerLinkActive="active"
+        >
+          <mat-icon class="nav-icons nav-r-space">{{ route.icon }} </mat-icon
+          >{{ route.title }}
+        </a>
+      </ng-template>
+
+      <div [id]="route.id" class="collapse nav-l-space">
+        <ul class="nav flex-column">
+          <li
+            class="nav-item text-white"
+            *ngFor="let routeChild of route.children"
+          >
+            <a
+              class="nav-link text-white d-flex align-items-center"
+              [routerLink]="routeChild.path"
+              routerLinkActive="active"
+            >
+              <mat-icon class="nav-icons nav-r-space"
+                >{{ routeChild.icon }} </mat-icon
+              >{{ routeChild.title }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  </div>
+</nav>

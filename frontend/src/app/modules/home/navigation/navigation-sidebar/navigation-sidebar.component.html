@@ -1,0 +1,61 @@
+<nav class="sidebar flex-shrink-0 p-3 d-md-block d-lg-block vh-100">
+  <div class="text-center userinfo">
+    <span>{{ currentUsername }}</span>
+    <span>{{ currentEmail }}</span>
+  </div>
+  <hr />
+  <ul class="nav nav-pills flex-column">
+    <ng-container *ngFor="let route of routes">
+      <li class="nav-item" *appPolicy='route.policies'>
+        <ng-container *ngIf="route.children; else simpleRoute">
+          <a
+            type="button"
+            class="nav-link text-black d-flex align-items-center"
+            data-toggle="collapse"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#' + route.id"
+            [attr.aria-controls]="route.id"
+            aria-expanded="true"
+            aria-label="Toggle navigation"
+          >
+            <mat-icon class="nav-icons nav-r-space">{{ route.icon }} </mat-icon
+            >{{ route.title }}
+          </a>
+        </ng-container>
+
+        <ng-template #simpleRoute>
+          <a
+            class="nav-link text-black d-flex align-items-center"
+            data-toggle="collapse"
+            [routerLink]="route.path"
+            routerLinkActive="active"
+          >
+            <mat-icon class="nav-icons nav-r-space">{{ route.icon }} </mat-icon
+            >{{ route.title }}
+          </a>
+        </ng-template>
+
+        <div [id]="route.id" class="collapse nav-l-space show">
+          <ul class="nav flex-column">
+            <ng-container *ngFor="let routeChild of route.children">
+              <li
+                *appPolicy='routeChild.policies'
+                class="nav-item text-black"
+              >
+                <a
+                  class="nav-link text-black d-flex align-items-center"
+                  [routerLink]="routeChild.path"
+                  routerLinkActive="active"
+                >
+                  <mat-icon class="nav-icons nav-r-space"
+                    >{{ routeChild.icon }} </mat-icon
+                  >{{ routeChild.title }}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</nav>

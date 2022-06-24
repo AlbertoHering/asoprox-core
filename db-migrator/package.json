@@ -1,0 +1,19 @@
+{
+  "name": "db-migrator",
+  "version": "1.0.0",
+  "description": "Database migration script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "up:dev": "db-migrate up --env=dev",
+    "down:dev": "db-migrate down --env=dev",
+    "db-migrate": "db-migrate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "db-migrate": "^0.11.12",
+    "db-migrate-mysql": "^2.1.2"
+  }
+}

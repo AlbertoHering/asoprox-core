@@ -1,0 +1,39 @@
+<div class="login-element container">
+  <div class="login-container">
+    <div class="login-box-header">
+      <img src="assets/images/ASOPROX_ft.png" />
+    </div>
+    <div class="login-box-body">
+      <div class="col-md-12 text-center" *ngIf="isLoggedIn">
+        <label class="text-center col-md-12"
+          >Welcome, {{ userLoginData.full_name }}</label
+        >
+        <label class="text-center col-md-12 mb-2"
+          >Email: {{ userLoginData.email }}</label
+        >
+        <button
+          mat-raised-button
+          class="text-center btn btn-primary align-content-center login-button mb-4"
+          (click)="inside()"
+        >
+          Enter
+        </button>
+        <button
+          mat-raised-button
+          class="text-center btn btn-primary align-content-center login-button"
+          (click)="logout()"
+        >
+          SignOut
+        </button>
+      </div>
+      <button
+        mat-raised-button
+        class="text-center btn btn-primary align-content-center login-button"
+        (click)="login()"
+        *ngIf="!isLoggedIn"
+      >
+        Sign in with Microsoft
+      </button>
+    </div>
+  </div>
+</div>

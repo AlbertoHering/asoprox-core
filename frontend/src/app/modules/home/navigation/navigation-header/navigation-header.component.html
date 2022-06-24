@@ -1,0 +1,74 @@
+<nav
+  class="navbar navbar-expand-lg navbar-expand-md navbar-dark sticky-top navigation-nav"
+>
+  <div class="container-fluid">
+    <span style="padding: 10px">
+      <img src="assets/images/ASOPROX_ft.png" />
+    </span>
+    <button
+      class="navbar-toggler d-sm-block d-md-none d-lg-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav d-sm-block d-md-none d-lg-none vh-100 ml-3">
+        <li class="nav-item" *ngFor="let route of routes">
+          <ng-container *ngIf="route.children; else simpleRoute">
+            <a
+              type="button"
+              class="nav-link text-white d-flex"
+              data-toggle="collapse"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#' + route.id"
+              [attr.aria-controls]="route.id"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <mat-icon class="nav-icons nav-r-space"
+                >{{ route.icon }} </mat-icon
+              >{{ route.title }}
+            </a>
+          </ng-container>
+
+          <ng-template #simpleRoute>
+            <a
+              class="nav-link text-white d-flex"
+              data-toggle="collapse"
+              [routerLink]="route.path"
+              routerLinkActive="active"
+            >
+              <mat-icon class="nav-icons nav-r-space"
+                >{{ route.icon }} </mat-icon
+              >{{ route.title }}
+            </a>
+          </ng-template>
+
+          <div [id]="route.id" class="collapse nav-l-space">
+            <ul class="nav flex-column">
+              <li
+                class="nav-item text-white"
+                *ngFor="let routeChild of route.children"
+              >
+                <a
+                  class="nav-link text-white d-flex"
+                  [routerLink]="routeChild.path"
+                  routerLinkActive="active"
+                >
+                  <mat-icon class="nav-icons nav-r-space"
+                    >{{ routeChild.icon }} </mat-icon
+                  >{{ routeChild.title }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,81 @@
+.home {
+    padding: 40px 0 120px;
+    text-align: center;
+}
+    .home .intro {
+        text-align: left;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 0 0 10px 15px;
+    }
+        .home h1 {
+            color: #0e62a7 !important;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+ul.nav-home {
+    margin: 10px auto;
+    padding: 20px 0 0 0;
+    position: relative;
+    width: 100%;
+    max-width: 90%;
+    text-align: center;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+    ul.nav-home li {
+        text-align: center;
+        margin: 0px 5px 12px;
+        border: solid 10px #ddd;
+        border-radius: 12%;
+        width: 140px;
+        min-height: 140px;
+        display: inline-block;
+        transition: all 0.3s ease-out;
+    }
+        ul.nav-home li a .mat-icon {
+            width: 100%;
+            font-size: 70px;
+            color: #ddd;
+            margin: 0 auto 46px;
+            display: block;
+            transition: all 0.3s ease-out;
+        }
+        ul.nav-home li:hover {
+            border-color: #0e62a7;
+            opacity: 1;
+            background-color: #0e62a7;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transform: scale(1.4);
+            transition:none;
+            z-index: 1000;
+        }
+        ul.nav-home li a {
+            min-height: 100px;
+            position: relative;
+            transition: all 0.3s ease-out;
+        }
+            ul.nav-home li:hover a .mat-icon {
+                color: #fff;
+                background-color: transparent;
+                margin-right: -2px;
+                margin-bottom: 5px;
+                z-index: 1000;
+            }
+        ul.nav-home li a span {
+            color: #bbb;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            transition: all 0.3s ease-out;
+        }
+            ul.nav-home li:hover a span {
+                color: #fff;
+                transform: scale(1.4);
+                transition:none;
+                font-size: 12px;
+                z-index: 1000;
+            }

@@ -1,0 +1,37 @@
+.notifyer {
+  font-size: 50px;
+}
+
+.notifyer-title {
+  top: 10px;
+  font-weight: bold;
+}
+
+.alert {
+  border-radius: 3px 3px 3px 3px;
+  box-shadow: 0 0 12px #999;
+  color: white;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.alert:hover {
+  opacity: 1;
+  box-shadow: 0 0 12px rgb(0, 0, 0);
+}
+
+.alert-success {
+  background-color: rgb(56, 142, 60) !important;
+}
+
+.alert-danger {
+  background-color: rgb(211, 47, 47) !important;
+}
+
+.alert-info {
+  background-color: rgb(2, 136, 209) !important;
+}
+
+.alert-warning {
+  background-color: rgb(245, 124, 0) !important;
+}

@@ -1,0 +1,20 @@
+<section
+  [class]="data.cssClass"
+  class="row justify-content-around border-0"
+  role="alert"
+>
+  <div class="col-2 pt-1">
+    <i class="material-icons notifyer">{{ data.icon }}</i>
+  </div>
+  <div class="col-9 notifyer-title pt-2">
+    <span class="py-1">{{ data.title }}</span>
+    <p class="py-1">{{ data.message }}</p>
+  </div>
+  <!--<button
+    mat-raised-button
+    class="btn btn-primary btn-sm"
+    (click)="onNoClick()"
+  >
+    Ok
+  </button>-->
+</section>

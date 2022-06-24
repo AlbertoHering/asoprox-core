@@ -1,0 +1,50 @@
+<h2 mat-dialog-title><mat-icon class="button-icon-mr">person_add</mat-icon>User</h2>
+<mat-dialog-content>
+  <form [formGroup]="userForm">
+
+    <section class="row align-items-center justify-content-center">
+
+      <div class="col-md-6 col-sm-1">
+        <mat-form-field class="w-100 p-2">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="full_name" autocomplete="off" />
+        </mat-form-field>
+      </div>
+  
+      <div class="col-md-6 col-sm-1" *ngIf="userForm.contains('email')">
+        <mat-form-field class="w-100 p-2">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" autocomplete="off" />
+          <mat-error *ngIf="userForm.controls['email'].hasError('required')"
+            >Email is required
+          </mat-error>
+          <mat-error *ngIf="userForm.controls['email'].hasError('email')"
+            >Check email format
+          </mat-error>
+          <mat-error *ngIf="userForm.controls['email'].hasError('maxLength')"
+            >Maximum number of characters allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-sm-1">
+        <mat-form-field class="w-100 p-2">
+          <mat-label>Personal Email</mat-label>
+          <input matInput formControlName="personal_email" autocomplete="off" />
+        </mat-form-field>
+      </div>
+
+    </section>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="!userForm.valid"
+    (click)="onSubmit()"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>

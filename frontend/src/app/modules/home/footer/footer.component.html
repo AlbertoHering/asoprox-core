@@ -1,0 +1,27 @@
+<div class="footer">
+  <div class="text-center">
+    <ul class="nav nav-footer">
+        <li class="nav-item">
+            <a
+            class="nav-link d-flex align-items-center"
+            routerLink="/home"
+            routerLinkActive="active"
+          ><mat-icon class="nav-icons nav-r-space">home</mat-icon>Inicio</a>
+        </li>
+      <ng-container *ngFor="let route of routes">
+        <li
+          *appPolicy='["public"]'
+          class="nav-item ">
+          <a
+            class="nav-link  d-flex align-items-center"
+            [routerLink]="route.path"
+            routerLinkActive="active"
+          ><mat-icon class="nav-icons nav-r-space">{{ route.icon }} </mat-icon
+            >{{ route.title }}</a>
+        </li>
+      </ng-container>
+    </ul>
+    <p class="footer-text">Logged-in as: <em>{{ footer.user }}</em> - {{ footer.date }}
+      <br/>ASOPROX-Core - v.1.0</p>
+  </div>
+</div>

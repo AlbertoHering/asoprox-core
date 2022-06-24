@@ -1,0 +1,22 @@
+<div class="footer">
+  <div class="text-center home">
+    <div class="intro">
+      <h1>¡Bienvenido <strong>{{ home.user }}!</strong></h1>
+      <p>ASOPROX agradece tu membresía.</p>
+    </div>
+    <hr />
+    <ul class="nav nav-home">
+      <ng-container *ngFor="let route of routes">
+        <li
+          *appPolicy='["public"]'
+          class="nav-item ">
+          <a class="nav-link align-items-center"
+            [routerLink]="route.path"
+            routerLinkActive="active"
+          ><mat-icon class="nav-icons nav-r-space">{{ route.icon }} </mat-icon
+            ><span>{{ route.title }}</span></a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

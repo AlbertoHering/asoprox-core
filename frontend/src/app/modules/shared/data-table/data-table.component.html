@@ -1,0 +1,67 @@
+<section class="px-1">
+  <div class="table-responsible mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="announceSortChange($event)"
+    >
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let position = index" class="position">
+          {{ position + 1 }}
+        </td>
+      </ng-container>
+
+      <ng-container
+        *ngFor="let column of columns"
+        [matColumnDef]="column.field"
+      >
+        <ng-container *ngIf="!column.actions; else actionBlock">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            [attr.sortActionDescription]="'Sort by ' + column.title"
+            class="{{ !!column.class ? column.class:'' }} {{ column.title==='Actions' ? 'actions':'' }}"
+          >
+            {{ column.title }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              column.boolRow
+                ? column.boolRow(element[column.field])
+                : element[column.field]
+            }}
+          </td>
+        </ng-container>
+        <ng-template #actionBlock
+          ><th mat-header-cell *matHeaderCellDef
+          class="{{ column.title==='Actions' ? 'actions':'' }}">{{ column.title }}</th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngFor="let action of column.actions">
+              <button
+                *appPolicy="action?.policies || []"
+                mat-icon-button
+                [color]="action.icon.color"
+                (click)="switchAction(action.id, element)"
+                attr.aria-label="{{ !!action.label?action.label:'' }}"
+                class="{{ action.icon.name }}"
+              ><mat-icon>{{ action.icon.name }}</mat-icon>
+            </button>
+          </ng-container>
+          </td></ng-template
+        >
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      *ngIf="dataSource.data.length >= 10"
+      [pageSizeOptions]="[10, 20, 50, 100]"
+      showFirstLastButtons
+      aria-label="Select page of User"
+    >
+    </mat-paginator>
+  </div>
+</section>

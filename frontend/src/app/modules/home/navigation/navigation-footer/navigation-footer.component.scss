@@ -1,0 +1,19 @@
+@import "../../../../styles-variables/variables.scss";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.active {
+  background-color: $primary-color !important;
+}
+
+.nav-r-space {
+  margin-right: 15px !important;
+}
+
+.nav-l-space {
+  padding-left: 15px !important;
+}

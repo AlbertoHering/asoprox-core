@@ -1,0 +1,16 @@
+{
+    "defaultEnv": "local",
+    "sql-file": true,
+    "local": {
+        "driver": "mysql"
+    },
+    "dev": {
+        "host":"localhost",
+        "user": "root",
+        "password": "password",
+        "database": "asoprox-core-db",
+        "driver": "mysql",
+        "port": "3306",
+        "multipleStatements": true
+    }
+}

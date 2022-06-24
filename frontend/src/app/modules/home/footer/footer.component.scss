@@ -1,0 +1,39 @@
+.footer {
+    border-top: solid 1px #ccc;
+    margin: 100px auto 20px;
+    padding: 20px 0;
+}
+    .footer .footer-text {
+        color: #bbb;
+    }
+ul.nav-footer {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 0 40px;
+    text-align: center;
+    width: 100%;
+    max-width: 70%;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}
+    ul.nav-footer li {
+        display: inline-block;
+    }
+        ul.nav-footer li:hover a {
+            border: solid 1px #ccc;
+            border-radius: 5px;
+            color: #333;
+            font-size: 104%;
+            padding: 0.3rem 0.9rem;
+        }
+            ul.nav-footer li a {
+                color: #ccc;
+                border: solid 1px transparent;
+            }
+            ul.nav-footer li .mat-icon {
+                height: 5px;
+                width: 5px;
+                position: relative;
+                top: -7px;
+                font-size: 17px;
+            }
