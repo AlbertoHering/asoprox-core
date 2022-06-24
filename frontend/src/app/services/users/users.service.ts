@@ -19,27 +19,8 @@ export class UsersService {
     return this.http.get<APIResponse<Array<User>>>(url);
   }
 
-  getUsersByProject(project_id: number): Observable<APIResponse<Array<User>>> {
-    if (typeof project_id === 'undefined') {
-      project_id = 0;
-    }
-    const projectServicePath = this.usersServicePath + 'project/';
-    const url = `${serverPath}${projectServicePath}${project_id}`;
-    return this.http.get<APIResponse<Array<User>>>(url);
-  }
-
-  getAllManagers(project_id: number): Observable<APIResponse<Array<User>>> {
-    if (typeof project_id === 'undefined') {
-      project_id = 0;
-    }
-    const managersServicePath = this.usersServicePath + 'managers/';
-    const url = `${serverPath}${managersServicePath}${project_id}`;
-    return this.http.get<APIResponse<Array<User>>>(url);
-  }
-
-  getReporters(): Observable<APIResponse<Array<User>>> {
-    const managersServicePath = this.usersServicePath + 'reporters/';
-    const url = serverPath + managersServicePath;
+  getUser(user_id: number): Observable<APIResponse<Array<User>>> {
+    const url = `${serverPath}${this.usersServicePath}${user_id}`;
     return this.http.get<APIResponse<Array<User>>>(url);
   }
 
@@ -57,4 +38,5 @@ export class UsersService {
     const url = `${serverPath}${this.usersServicePath}${id}`;
     return this.http.delete<APIResponse<number>>(url);
   }
+
 }

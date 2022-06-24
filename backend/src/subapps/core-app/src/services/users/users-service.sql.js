@@ -8,14 +8,14 @@ exports.usersSQLQueries = {
     "`users`.inactive FROM `users` LEFT JOIN `options` "
     +"ON (`options`.`id` = `users`.`employee_type_id`) " +
     "WHERE `users`.inactive = 0 ORDER BY full_name ASC ",
-  getUsersByProject: "SELECT `users`.`id`, `users`.`full_name` "
-      +"FROM `users` "
-      +"  LEFT JOIN `user_projects` "
-      +"    ON (`users`.`id` = `user_projects`.`user_id`) "
-      +"WHERE inactive = 0 "
-      +"AND CASE WHEN 0 < ? THEN `user_projects`.`project_id` = ? ELSE 1 = 1 END "
-      +"GROUP BY `users`.`id` "
-      +"ORDER BY full_name ASC ",
+  getUser: "SELECT `users`.id, `users`.email, `users`.personal_email, `users`.full_name, " +
+  "`users`.initial_date, `users`.employee_type_id, `options`.`option` AS `employee_type_name`, "
+  +"`users`.country_id, `users`.dob, `users`.emergency_contact_name, `users`.emergency_contact_phone, " +
+  "`users`.emergency_contact_relationship, `users`.employee_status, " +
+  "`users`.employee_status_reason, `users`.partner_id, `users`.job_title_id, " +
+  "`users`.inactive FROM `users` LEFT JOIN `options` "
+  +"ON (`options`.`id` = `users`.`employee_type_id`) " +
+  "WHERE `users`.inactive = 0 AND `users`.`id` = ? ",
   getManagers: "SELECT `users`.`id`, `users`.`full_name` "
       +"FROM `users` "
       +"  LEFT JOIN `user_projects` "

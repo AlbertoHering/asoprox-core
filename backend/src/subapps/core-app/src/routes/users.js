@@ -6,18 +6,10 @@ router.get("/users", async (req, res) => {
   res.send(await usersService.getUsers());
 });
 
-router.get("/users/project/:project_id", async (req, res) => {
-  const { project_id } = req.params;
-  res.send(await usersService.getUsersByProject(project_id));
-});
-
-router.get("/users/managers/:project_id", async (req, res) => {
-  const { project_id } = req.params;
-  res.send(await usersService.getManagers(project_id));
-});
-
-router.get("/users/reporters", async (req, res) => {
-  res.send(await usersService.getReporters());
+router.get("/users/:user_id", async (req, res) => {
+  const { user_id } = req.params;
+  console.log(user_id);
+  res.send(await usersService.getUser(user_id));
 });
 
 router.post("/users", async (req, res) => {

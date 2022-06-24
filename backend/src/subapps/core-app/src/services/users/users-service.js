@@ -18,11 +18,10 @@ exports.getUsers = async () => {
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services), 200);
 };
 
-exports.getUsersByProject = async(project_id) => {
+exports.getUser = async(user_id) => {
   const fn = async () => {
-    const usersResultset = await mySQLdb.query(usersSQLQueries.getUsersByProject, [
-      project_id,
-      project_id
+    const usersResultset = await mySQLdb.query(usersSQLQueries.getUser, [
+      user_id
     ]);
 
     if (!usersResultset.length) {
@@ -32,36 +31,6 @@ exports.getUsersByProject = async(project_id) => {
     return usersResultset;
   };
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services.toLowerCase()), 200);
-};
-
-exports.getManagers = async (project_id) => {
-  const fn = async () => {
-    const usersResultset = await mySQLdb.query(usersSQLQueries.getManagers, [
-      project_id,
-      project_id,
-      project_id
-    ]);
-
-    if (!usersResultset.length) {
-      funcWrapper.throwError(returnMessage(6, "managers"), 404);
-    }
-
-    return usersResultset;
-  };
-  return await funcWrapper.ExecFnAsync(fn, returnMessage(5, "Managers"), 200);
-};
-
-exports.getReporters = async () => {
-  const fn = async () => {
-    const usersResultset = await mySQLdb.query(usersSQLQueries.getReporters);
-
-    if (!usersResultset.length) {
-      funcWrapper.throwError(returnMessage(6, "reporters"), 404);
-    }
-
-    return usersResultset;
-  };
-  return await funcWrapper.ExecFnAsync(fn, returnMessage(5, "Reporters"), 200);
 };
 
 exports.addUser = async (user) => {
