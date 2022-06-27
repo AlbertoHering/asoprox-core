@@ -15,12 +15,12 @@ const childrenRoutes: Array<RouteModel> = [
     title: 'Estados global',
     policies: ["public"],
   },
-  {
+  /**{
     id: 'individualstatements-route',
     icon: 'library_add',
     path: '/maintenance/individualstatements',
     title: 'Estados Individual ',
     policies: ["public"],
-  },
+  },*/
 ];
 export default childrenRoutes;

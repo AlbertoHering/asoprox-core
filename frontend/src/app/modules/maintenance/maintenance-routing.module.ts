@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth/auth.guard';
 import { PolicyGuard } from 'src/app/guards/policy/policy.guard';
 import { UsersComponent } from './components/users/users.component';
-import { IndividualStatementsComponent } from './components/individualstatements/individualstatements.component';
+//import { IndividualStatementsComponent } from './components/individualstatements/individualstatements.component';
 import { StatementsComponent } from './components/statements/statements.component';
 
 const routes: Routes = [
@@ -29,14 +29,14 @@ const routes: Routes = [
         },
         component: StatementsComponent,
       },
-      {
+      /**{
         path: 'individualstatements',
         canActivate: [AuthGuard, PolicyGuard],
         data: {
           policies: ["public"]
         },
         component: IndividualStatementsComponent,
-      }
+      }*/
     ]
   }
 ];
