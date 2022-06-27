@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { take, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import { Router, NavigationEnd } from '@angular/router';
 import * as moment from 'moment';
 
 import childrenRoutes from '../../home/navigation/childrenAdminRoutes';
@@ -20,6 +21,7 @@ export class AdminComponent implements OnInit {
   @Output() updateEvent = new EventEmitter<User>();
 
   public routes = childrenRoutes;
+  router: any;
   constructor(
     private cookieService: CookieService,
     public usersService: UsersService,

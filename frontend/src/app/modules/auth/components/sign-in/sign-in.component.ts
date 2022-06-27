@@ -75,7 +75,6 @@ export class SignInComponent implements OnInit {
         .pipe(
           take(1),
           tap((loginResult) => {
-            console.log(loginResult);
             if (loginResult.success && loginResult.data) {
               this.cookieService.set(
                 'sessionData',

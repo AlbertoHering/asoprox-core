@@ -1,0 +1,9 @@
+<h1 class="text-center">Estados de cuenta global</h1>
+<app-statements-actions
+  (filtersEvent)="applyFilters($event)"
+></app-statements-actions>
+<app-data-table
+  *ngIf="filteredStatements"
+  [dataList]="filteredStatements"
+  [columns]="columns"
+></app-data-table>

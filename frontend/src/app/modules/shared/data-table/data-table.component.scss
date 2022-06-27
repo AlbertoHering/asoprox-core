@@ -52,160 +52,34 @@ tr.mat-row {
     width: 32px;
   }
 
-.clients_name {
-    width: 36%;
+ th.statement_fullname {
+  width: 50%
 }
-.clients_location, .clients_contact {
-    width: 14%;
-}
-.clients_email {
-    width: 16%;
-}
-.clients_country {
-    width: 4%;
-}
-.country_code {
+th.statement_entryamount,
+th.statement_companymatchamount,
+th.statement_totalaportes {
   width: 8%;
-  min-width: 140px;
 }
-.country_name {
-  width: 64%;
+th.statement_entryamount button.mat-sort-header-container,
+th.statement_companymatchamount button.mat-sort-header-container,
+th.statement_totalaportes button.mat-sort-header-container {
+  float: right !important;
 }
-
-.holiday_country {
-  width: 14%;
-}
-.holiday_name {
-  width: 68%;
-}
-.holiday_day, .holiday_month {
-  width: 5%;
-}
-
-.jobtitle_name {
-  width: 82%;
-}
-
-.policy_code {
-  width: 12%;
-}
-.policy_name {
-  width: 18%;
-}
-.policy_description {
-  width: 44%;
-}
-.policy_protected {
-  width: 10%;
-}
-
-.project_name, .project_client {
-  width: 26%;
-}
-.project_manager {
-  width: 16%;
-}
-.project_manager_backup {
-  width: 16%;
-}
-.project_status {
-  width: 7%;
-}
-.project_actions {
-  width: 2%;
-}
-
-.prx5in4_events_project {
-  width: 27%;
-}
-.prx5in4_events_user {
-  width: 18%;
-}
-.prx5in4_events_event {
-  width: 19%;
-}
-.prx5in4_events_from {
-  width: 10%;
-}
-.prx5in4_events_to {
-  width: 10%;
-}
-
-.prx5in4_request_name,
-.prx5in4_request_approvedby {
-  width: 30%;
-}
-.prx5in4_request_dayselected,
-.prx5in4_request_approvedon {
-  width: 12%;
-}
-
-.prx5in4_restriction_name {
+th.statement_entrydate {
   width: 20%;
 }
-.prx5in4_restriction_user {
-  width: 34%;
+td.mat-column-entry_amount_formatted,
+td.mat-column-company_match_amount_formatted,
+td.mat-column-total_amount_formatted {
+  text-align: right;
+  padding-right: 20px;
 }
-.prx5in4_restriction_reason {
-  width: 24%;
+td.mat-column-entry_amount_formatted,
+td.mat-column-company_match_amount_formatted,
+td.mat-column-total_amount_formatted {
+  text-align: right;
+  padding-right: 20px;
 }
-.prx5in4_restriction_status {
-  width: 6%;
-}
-
-.rolepolicy_role {
-  width: 20%;
-}
-.rolepolicy_policy {
-  width: 64%;
-}
-
-.role_name {
-  width: 30%;
-}
-
-.userpolicy_name {
-  width: 20%;
-}
-.userpolicy_policy {
-  width: 64%;
-}
-
-.userproject_user {
-  width: 22%;
-}
-.userproject_jobtitle {
-  width: 18%;
-}
-.userproject_projectname {
-  width: 40%;
-}
-
-.user_name {
-  width: 22%;
-}
-.user_email,
-.user_personalemail {
-  width: 20%;
-}
-.user_employeetype {
-  width: 10%;
-}
-.user_employeestatus {
-  width: 14%;
-}
-
-.vacation_name {
-  width: 15%;
-}
-.vacation_from,
-.vacation_to,
-.vacation_approvedon {
-  width: 7%;
-}
-.vacation_approvedby {
-  width: 15%;
-}
-.vacation_project {
-  width: 34%;
+td.mat-column-entry_date {
+  text-align: center;
 }

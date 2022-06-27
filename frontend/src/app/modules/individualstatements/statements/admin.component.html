@@ -1,0 +1,21 @@
+<div class="footer">
+  <div class="admin">
+    <div class="intro">
+      <h1>Perfil</h1>
+      <p>Perfil del miembro asociado</p>
+    </div>
+    <hr />
+    <div class="body">
+      <dl>
+        <dt>Nombre</dt><dd>{{ userData?.full_name }}</dd>
+        <dt>Correo electrónico</dt><dd>{{ userData?.email }}</dd>
+        <dt>Correo electrónico personal</dt><dd>{{ userData?.personal_email || 'N/D' }}</dd>
+        <dt>Cédula de identidad</dt><dd>{{ userData?.id }}</dd>
+        <dt>Fecha de afiliación</dt><dd>{{ initialDate }}</dd>
+      </dl>
+      <button mat-raised-button color="primary" (click)="openForm()">
+        <mat-icon class="button-icon-mr">edit</mat-icon>Editar
+      </button>
+    </div>
+  </div>
+</div>

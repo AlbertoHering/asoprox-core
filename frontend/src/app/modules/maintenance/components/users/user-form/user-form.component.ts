@@ -112,9 +112,6 @@ export class UserFormComponent implements OnInit {
             );
             if (result.success) {
               this.dialogRef.close(result);
-              if (this.userEdit) {
-                
-              }
             }
           })
         )

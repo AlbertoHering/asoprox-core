@@ -16,7 +16,6 @@ import { UsersService } from 'src/app/services/users/users.service';
 export class UserFormComponent implements OnInit {
   userData: User;
   readOnly: Boolean = false;
-  userEdit: Boolean = false
   userForm!: FormGroup;
 
   constructor(
@@ -27,7 +26,6 @@ export class UserFormComponent implements OnInit {
   ) {
     this.userData = data;
     this.readOnly = data?.read_only || false;
-    this.userEdit = data?.user_edit || false;
   }
 
   ngOnInit() {
@@ -36,31 +34,15 @@ export class UserFormComponent implements OnInit {
         Validators.required,
         Validators.maxLength(200),
       ]),
-      email: new FormControl({
-          value: this.userData?.email || '',
-          disabled: this.userEdit
-        }, [
+      email: new FormControl(this.userData?.email || '', [
         Validators.required,
-        Validators.maxLength(200),
+        Validators.maxLength(100),
         Validators.email,
       ]),
       personal_email: new FormControl(this.userData?.personal_email || '', [
-        Validators.maxLength(200),
+        Validators.maxLength(100),
         Validators.email,
-      ]),
-      id: new FormControl(this.userData?.id || '', [
-        Validators.required,
-      ]),
-      initial_date: new FormControl({
-        value: this.userData?.initial_date || '',
-        disabled: this.userEdit
-      }, [
-        Validators.required,
-      ]),
-      account_access: new FormControl({
-        value: this.userData?.account_access || '',
-        disabled: this.userEdit
-      })
+      ])
     });
 
     this.loadData();
@@ -68,29 +50,22 @@ export class UserFormComponent implements OnInit {
 
   loadData() {
 
-    if (this.readOnly) {
+      if (this.readOnly) {
         this.userForm.disable();
       }
 
   }
 
   onSubmit() {
-
-    if (this.userEdit) {
-      this.userForm.value.email = this.userData?.email;
-      this.userForm.value.initial_date = this.userData?.initial_date;
-      this.userForm.value.account_access = this.userData?.account_access;
-    }
-
     if (!this.userData) {
       this.usersService
         .addUser(this.userForm.value)
         .pipe(
           take(1),
-          tap((result: { success: boolean; message: string; }) => {
+          tap((result) => {
             this.toasterService.openSnackBar(
               result.success ? 'success' : 'danger',
-              'Crear Miembro Asociado',
+              'Agregar Miembro Asociado',
               result.message
             );
             if (result.success) {
@@ -101,10 +76,10 @@ export class UserFormComponent implements OnInit {
         .subscribe();
     } else {
       this.usersService
-        .updateUser(this.userForm.value, this.userData.member_id)
+        .updateUser(this.userForm.value, this.userData.id)
         .pipe(
           take(1),
-          tap((result: { success: boolean; message: string; }) => {
+          tap((result) => {
             this.toasterService.openSnackBar(
               result.success ? 'success' : 'danger',
               'Actualizar Miembro Asociado',
@@ -112,9 +87,6 @@ export class UserFormComponent implements OnInit {
             );
             if (result.success) {
               this.dialogRef.close(result);
-              if (this.userEdit) {
-                
-              }
             }
           })
         )

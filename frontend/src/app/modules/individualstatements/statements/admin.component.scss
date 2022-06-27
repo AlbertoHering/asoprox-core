@@ -1,0 +1,29 @@
+.admin {
+    padding: 40px 0 120px;
+    text-align: left;
+}
+    .admin .intro {
+        text-align: left;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 0 0 10px 15px;
+    }
+        .admin h1 {
+            color: #0e62a7 !important;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    .admin .body {
+        text-align: left;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 0 0 10px 15px;
+    }
+dt {
+    color: #555;
+    font-weight: 200;
+}
+dd {
+    font-size: 140%;
+    padding-bottom: 20px;
+}

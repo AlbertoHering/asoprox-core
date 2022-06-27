@@ -55,8 +55,6 @@ exports.addUser = async (user) => {
 
 exports.updateUser = async (user, user_id) => {
   const fn = async () => {
-    console.log(user);
-    console.log(user_id);
     const usersResultset = await mySQLdb.query(usersSQLQueries.updateUser, [
       user_id, /** Member ID */
       user.full_name,
