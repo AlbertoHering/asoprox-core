@@ -1,5 +1,5 @@
 const { funcWrapper } = require("../../../../../utils");
-const { individualstatementsSQLQueries } = require("./individualindividualstatements-service.sql");
+const { individualstatementsSQLQueries } = require("./individualstatements-service.sql");
 const { mySQLdb } = require("../../../../../integrations");
 const { returnMessage } = require("../return-message-service");
 const service = "Estado de cuenta";
@@ -8,7 +8,7 @@ const services = "Estados de cuenta";
 exports.getIndividualStatements = async () => {
   
   const fn = async () => {
-    const individualstatementsResultset = await mySQLdb.query(individualstatementsSQLQueries.getIndividualStatements);
+    const individualstatementsResultset = await mySQLdb.query(individualstatementsSQLQueries.getIndividualStatement);
     if (!individualstatementsResultset.length) {
       funcWrapper.throwError(returnMessage(6, services.toLowerCase()), 404);
     }

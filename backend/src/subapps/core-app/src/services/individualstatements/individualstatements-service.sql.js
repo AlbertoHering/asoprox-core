@@ -2,7 +2,6 @@ var moment = require('moment');
 var now = moment();
 
 exports.individualstatementsSQLQueries = {
-  getIndividualStatements:  "CALL getStatement(0);",
   getIndividualStatement:   "CALL getStatement(?);",
   createIndividualStatement: "CALL crudIndividualStatement(0, ?, ?, ?, ?, ?, 1, 0);",
   updateIndividualStatement: "CALL crudIndividualStatement(?, ?, ?, ?, ?, ?, ?, 0);",
