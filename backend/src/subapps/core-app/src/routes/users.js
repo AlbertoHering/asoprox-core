@@ -8,7 +8,6 @@ router.get("/users", async (req, res) => {
 
 router.get("/users/:user_id", async (req, res) => {
   const { user_id } = req.params;
-  console.log(user_id);
   res.send(await usersService.getUser(user_id));
 });
 

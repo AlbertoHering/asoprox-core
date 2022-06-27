@@ -101,8 +101,8 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
         const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
           data: {
-            title: 'Confirm Delete',
-            message: 'Are you sure you want to remove this record permanently?'
+            title: 'Eliminación de registro',
+            message: '¿Está seguro que quiere eliminar el registro seleccionado?'
           }
         });
         confirmDialog.afterClosed().subscribe(result => {

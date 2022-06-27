@@ -1,10 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { take, tap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
 
 import childrenRoutes from '../../home/navigation/childrenAdminRoutes';
+import { APIResponse } from 'src/app/models/api-response';
+import { User, UserFilters } from 'src/app/models/user';
+import { UserFormComponent } from 'src/app/modules/maintenance/components/users/user-form/user-form.component';
 import { UsersService } from 'src/app/services/users/users.service';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-admin',
@@ -13,13 +17,17 @@ import { User } from 'src/app/models/user';
 })
 export class AdminComponent implements OnInit {
 
+  @Output() updateEvent = new EventEmitter<User>();
+
   public routes = childrenRoutes;
   constructor(
     private cookieService: CookieService,
-    public usersService: UsersService
+    public usersService: UsersService,
+    public dialog: MatDialog
   ) { }
 
   userData?: User;
+  initialDate?: string = '';
   private currentUser = JSON.parse(this.cookieService.get('sessionData'))
   public admin = {
     user: this.currentUser.full_name,
@@ -37,11 +45,31 @@ export class AdminComponent implements OnInit {
         take(1),
         tap((getUsersResult: any) => {
           if ( getUsersResult.success && !!getUsersResult ) {
-            this.userData = getUsersResult.data[0];
+            const result = getUsersResult.data[0];
+            this.initialDate = moment(new Date(result?.initial_date)).lang("es").format('DD [de] MMMM [de] YYYY');
+            this.userData = result;
           }
         })
       )
       .subscribe();
+  }
+
+  openForm() {
+    const dialogRef = this.dialog.open(UserFormComponent, {
+      data: {
+        id: this.admin.id,
+        user_edit: true,
+        ...this.userData
+      },
+    });
+
+    dialogRef
+      .afterClosed()
+      .subscribe((result: APIResponse<User>) =>
+        this.updateEvent.emit(
+          result.data
+        )
+      );
   }
 
 }

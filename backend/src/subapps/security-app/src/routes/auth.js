@@ -7,6 +7,7 @@ router.post("/login", async (req, res) => {
   const singInData = req.body;
   const userAuthentication = await authService.authenticateUser(singInData);
   const { data } = await authService.getUserPolicies(+userAuthentication.data.id);
+  
   const userPolicies = data;
   userAuthentication.data.policies = userPolicies;
   return res

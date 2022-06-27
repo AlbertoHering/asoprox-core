@@ -15,4 +15,5 @@ export interface Column {
   class?: string;
   actions?: Array<DataAction>;
   boolRow?: (is_bool: boolean) => string;
+  dateRow?: any;
 }

@@ -2,18 +2,18 @@ const { funcWrapper } = require("../../../../../utils");
 const { usersSQLQueries } = require("./users-service.sql");
 const { mySQLdb } = require("../../../../../integrations");
 const { returnMessage } = require("../return-message-service");
-const service = "User";
-const services = "Users";
+const service = "Miembro Asociado";
+const services = "Miembros Asociados";
 
 exports.getUsers = async () => {
+  
   const fn = async () => {
     const usersResultset = await mySQLdb.query(usersSQLQueries.getUsers);
-
     if (!usersResultset.length) {
       funcWrapper.throwError(returnMessage(6, services.toLowerCase()), 404);
     }
 
-    return usersResultset;
+    return usersResultset[0];
   };
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services), 200);
 };
@@ -28,7 +28,7 @@ exports.getUser = async(user_id) => {
       funcWrapper.throwError(returnMessage(6, services.toLowerCase()), 404);
     }
 
-    return usersResultset;
+    return usersResultset[0];
   };
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services.toLowerCase()), 200);
 };
@@ -36,19 +36,11 @@ exports.getUser = async(user_id) => {
 exports.addUser = async (user) => {
   const fn = async () => {
     const usersResultset = await mySQLdb.query(usersSQLQueries.createUser, [
+      user.full_name,
       user.email,
       user.personal_email || null,
-      user.full_name,
-      new Date(user.initial_date),
-      user.employee_type_id,
-      user.country_id,
-      user.dob ? new Date(user.dob) : null,
-      user.emergency_contact_name || null,
-      user.emergency_contact_phone || null,
-      user.emergency_contact_relationship || null,
-      user.employee_status,
-      user.partner_id || null,
-      user.job_title_id,
+      user.id,
+      new Date(user.initial_date)
     ]);
 
     if (usersResultset.affectedRows < 1) {
@@ -63,22 +55,16 @@ exports.addUser = async (user) => {
 
 exports.updateUser = async (user, user_id) => {
   const fn = async () => {
+    console.log(user);
+    console.log(user_id);
     const usersResultset = await mySQLdb.query(usersSQLQueries.updateUser, [
+      user_id, /** Member ID */
+      user.full_name,
       user.email,
       user.personal_email || null,
-      user.full_name,
+      user.id,
       new Date(user.initial_date),
-      user.employee_type_id,
-      user.country_id,
-      user.dob ? new Date(user.dob) : null,
-      user.emergency_contact_name || null,
-      user.emergency_contact_phone || null,
-      user.emergency_contact_relationship || null,
-      user.employee_status,
-      user.partner_id || null,
-      user.job_title_id,
-      user.employee_status_reason || null,
-      user_id,
+      user.account_access ? 1:0
     ]);
 
     if (usersResultset.ResultSetHeader?.affectedRows < 1) {
@@ -96,7 +82,6 @@ exports.deleteUser = async (user_id) => {
     const usersResultset = await mySQLdb.query(usersSQLQueries.deleteUser, [
       user_id
     ]);
-
 
     if (usersResultset.ResultSetHeader?.affectedRows < 1) {
       funcWrapper.throwError(returnMessage(8, service.toLowerCase()), 404);

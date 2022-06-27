@@ -20,7 +20,7 @@ exports.authenticateUser = async (user) => {
     if (!authUser.length) {
       funcWrapper.throwError("Invalid user", 404);
     }
-    return authUser[0];
+    return authUser[0][0];
   };
   return await funcWrapper.ExecFnAsync(
     fn,
@@ -30,12 +30,13 @@ exports.authenticateUser = async (user) => {
 };
 
 exports.getUserPolicies = async (user_id) => {
+
   const fn = async () => {
     const userPolicies = await mySQLdb.query(authSQLQueries.getUserPolicies, [
       user_id
     ]);
 
-    const userPoliciesToArray = userPolicies.map(function(obj){
+    const userPoliciesToArray = userPolicies[0].map(function(obj){
       return obj.code;
     });
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { take, tap } from 'rxjs/operators';
+import * as moment from 'moment';
 
 import { Column } from 'src/app/models/data-table';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
@@ -29,18 +30,30 @@ export class UsersComponent implements OnInit {
   columns: Column[] = [
     {
       field: 'full_name',
-      title: 'Full Name',
+      title: 'Nombre completo',
       class: 'user_name'
     },
     {
       field: 'email',
-      title: 'Email',
+      title: 'Correo electrónico',
       class: 'user_email'
     },
     {
       field: 'personal_email',
-      title: 'Personal Email',
-      class: 'user_personalemail'
+      title: 'Corre Electrónico Personal',
+      class: 'user_email'
+    },
+    {
+      field: 'account_access',
+      title: 'Acceso a cuenta',
+      boolRow: (is_bool: boolean) => (is_bool ? 'Habilitado' : 'Deshabilitado'),
+      class: 'user_accountaccess'
+    },
+    {
+      field: 'initial_date',
+      title: 'Miembro desde',
+      dateRow: (is_date: any) => ( moment(new Date(is_date)).format('DD-MM-YYYY') ),
+      class: 'user_accountaccess'
     },
     {
       field: 'actions',
@@ -52,7 +65,7 @@ export class UsersComponent implements OnInit {
           icon: {
             name: 'preview',
           },
-          label: 'View User',
+          label: 'Ver registro completo',
           openDialog: 'dialog',
           policies: ["public"]
         },
@@ -61,7 +74,7 @@ export class UsersComponent implements OnInit {
           icon: {
             name: 'edit',
           },
-          label: 'Edit User',
+          label: 'Editar registro',
           openDialog: 'dialog',
           policies: ["public"]
         },
@@ -70,7 +83,7 @@ export class UsersComponent implements OnInit {
           icon: {
             name: 'delete',
           },
-          label: 'Delete User',
+          label: 'Eliminar registro',
           policies: ["public"]
         },
       ],
@@ -95,7 +108,7 @@ export class UsersComponent implements OnInit {
 
   deleteUser(data: User) {
     this.usersService
-      .deleteUser(data.id)
+      .deleteUser(data.member_id)
       .pipe(
         take(1),
         tap((deleteUserResult) => {

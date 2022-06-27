@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppPolicyService } from './services/app.policy/app.policy.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth/auth.service';
+import { AdminModule } from './modules/admin/admin.module';
 import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ToasterService } from './services/toaster/toaster.service';
@@ -32,6 +33,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AdminModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

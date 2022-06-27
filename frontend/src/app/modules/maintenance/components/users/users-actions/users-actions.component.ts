@@ -18,8 +18,6 @@ export class UsersActionsComponent implements OnInit {
 
   filters: UserFilters = {
     full_name: '',
-    statuses: [],
-    employees_type: [],
   };
 
   constructor(

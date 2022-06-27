@@ -5,7 +5,7 @@ const childrenRoutes: Array<RouteModel> = [
     id: 'users-route',
     icon: 'portrait',
     path: '/maintenance/users',
-    title: 'Asociados',
+    title: 'Miembros Asociados',
     policies: ["public"],
   },
 ];

@@ -65,7 +65,7 @@ export class UserFormComponent implements OnInit {
           tap((result) => {
             this.toasterService.openSnackBar(
               result.success ? 'success' : 'danger',
-              'Create User',
+              'Agregar Miembro Asociado',
               result.message
             );
             if (result.success) {
@@ -82,7 +82,7 @@ export class UserFormComponent implements OnInit {
           tap((result) => {
             this.toasterService.openSnackBar(
               result.success ? 'success' : 'danger',
-              'Update User',
+              'Actualizar Miembro Asociado',
               result.message
             );
             if (result.success) {
