@@ -6,6 +6,10 @@ router.get("/users", async (req, res) => {
   res.send(await usersService.getUsers());
 });
 
+router.get("/users/list", async (req, res) => {
+  res.send(await usersService.getUsersList());
+});
+
 router.get("/users/:user_id", async (req, res) => {
   const { user_id } = req.params;
   res.send(await usersService.getUser(user_id));

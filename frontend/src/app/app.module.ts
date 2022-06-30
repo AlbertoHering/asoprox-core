@@ -14,6 +14,7 @@ import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ToasterService } from './services/toaster/toaster.service';
 import { UsersService } from './services/users/users.service';
+import { UtilService } from './services/util/util.service';
 
 import {
   IPublicClientApplication,
@@ -50,6 +51,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     MsalService,
     ToasterService,
     UsersService,
+    UtilService,
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory,

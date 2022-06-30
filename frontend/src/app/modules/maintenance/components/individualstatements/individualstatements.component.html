@@ -1,0 +1,12 @@
+<h1 class="text-center">Estado de cuenta individual</h1>
+<app-individualstatements-actions
+  (filtersEvent)="applyFilters($event)"
+  (newIndividualStatementEvent)="createIndividualStatement($event)"
+></app-individualstatements-actions>
+<app-data-table
+  *ngIf="individualstatements"
+  [dataList]="individualstatements"
+  [columns]="columns"
+  (updateEvent)="updateIndividualStatement($event)"
+  (deleteEvent)="deleteIndividualStatement($event)"
+></app-data-table>

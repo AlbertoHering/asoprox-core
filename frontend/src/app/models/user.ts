@@ -12,6 +12,7 @@ export interface User {
 }
 
 export interface UserFilters {
+  member_id?: number;
   full_name: string;
 }
 

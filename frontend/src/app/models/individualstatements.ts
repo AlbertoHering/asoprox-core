@@ -1,6 +1,6 @@
 export interface IndividualStatement {
   statement_id: number;
-  member_id: string;
+  member_id: number;
   full_name: string;
   entry_date: string;
   entry_amount: number;
@@ -15,5 +15,6 @@ export interface IndividualStatement {
 }
 
 export interface IndividualStatementFilters {
-  full_name: string;
+  member_id?: number,
+  full_name?: string;
 }

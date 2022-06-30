@@ -19,6 +19,11 @@ export class UsersService {
     return this.http.get<APIResponse<Array<User>>>(url);
   }
 
+  getUsers(): Observable<APIResponse<Array<User>>> {
+    const url = serverPath + this.usersServicePath + 'list';
+    return this.http.get<APIResponse<Array<User>>>(url);
+  }
+
   getUser(user_id: number): Observable<APIResponse<Array<User>>> {
     const url = `${serverPath}${this.usersServicePath}${user_id}`;
     return this.http.get<APIResponse<Array<User>>>(url);

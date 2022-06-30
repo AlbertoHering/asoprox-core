@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { take, tap } from 'rxjs/operators';
-import * as moment from 'moment';
 
 import { Column } from 'src/app/models/data-table';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
 import { Statement, StatementFilters } from 'src/app/models/statement';
 import { StatementFormComponent } from './statements-form/statement-form.component';
 import { StatementsService } from 'src/app/services/statements/statements.service';
+import { UtilService } from 'src/app/services/util/util.service';
 
 @Component({
   selector: 'app-statements',
@@ -18,7 +18,8 @@ export class StatementsComponent implements OnInit {
   constructor(
     public statementsService: StatementsService,
     public dialog: MatDialog,
-    private toaster: ToasterService
+    private toaster: ToasterService,
+    private utils: UtilService
   ) {}
 
   ngOnInit() {
@@ -56,11 +57,6 @@ export class StatementsComponent implements OnInit {
     },
   ];
 
-  private formatter = new Intl.NumberFormat('es-CR', {
-    style: 'currency',
-    currency: 'CRC',
-    minimumFractionDigits: 2,
-  });
 
   loadData() {
     this.statementsService
@@ -72,10 +68,10 @@ export class StatementsComponent implements OnInit {
             const result = getStatementsResult.data;
             if (typeof result !== 'undefined') {
               result.map((r:Statement) => {
-                r.entry_date = moment(new Date(r?.entry_date)).locale("es").format('DD [de] MMMM [de] YYYY'),
-                r.entry_amount_formatted = this.formatter.format( r.entry_amount ),
-                r.company_match_amount_formatted = this.formatter.format( r.company_match_amount ),
-                r.total_amount_formatted = this.formatter.format( +r.entry_amount + +r.company_match_amount )
+                r.entry_date = this.utils.formatDate(r?.entry_date),
+                r.entry_amount_formatted = this.utils.formatMoney( r.entry_amount ),
+                r.company_match_amount_formatted = this.utils.formatMoney( r.company_match_amount ),
+                r.total_amount_formatted = this.utils.formatMoney( +r.entry_amount + +r.company_match_amount )
               });
             }
             this.statements = result;

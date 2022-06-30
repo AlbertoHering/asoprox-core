@@ -18,6 +18,19 @@ exports.getUsers = async () => {
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services), 200);
 };
 
+exports.getUsersList = async () => {
+  
+  const fn = async () => {
+    const usersResultset = await mySQLdb.query(usersSQLQueries.getUsersList);
+    if (!usersResultset.length) {
+      funcWrapper.throwError(returnMessage(6, services.toLowerCase()), 404);
+    }
+
+    return usersResultset[0];
+  };
+  return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services), 200);
+};
+
 exports.getUser = async(user_id) => {
   const fn = async () => {
     const usersResultset = await mySQLdb.query(usersSQLQueries.getUser, [
