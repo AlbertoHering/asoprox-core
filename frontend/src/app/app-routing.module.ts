@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { PolicyGuard } from './guards/policy/policy.guard';
 import { AdminComponent } from './modules/admin/admin/admin.component';
+import { StatementComponent } from './modules/admin/statement/statement.component';
 import { HomeComponent } from './modules/home/home/home.component';
 import { LayoutComponent } from './modules/home/layout/layout.component';
 
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'admin',
         component: AdminComponent,
+      },
+      {
+        path: 'statement',
+        component: StatementComponent,
       },
     ],
   }

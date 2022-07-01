@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { individualstatementsService } = require("../services");
 
-router.get("/individualstatements/:individualstatement_id", async (req, res) => {
+router.get("/individualstatements/:individualstatement_id/:summary", async (req, res) => {
   const { individualstatement_id } = req.params;
-  res.send(await individualstatementsService.getIndividualStatement(individualstatement_id));
+  const { summary } = req.params;
+  res.send(await individualstatementsService.getIndividualStatement(individualstatement_id, summary));
 });
 
 router.post("/individualstatements", async (req, res) => {

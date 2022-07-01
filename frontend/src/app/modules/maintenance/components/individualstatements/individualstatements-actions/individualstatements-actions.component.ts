@@ -71,5 +71,14 @@ public is = IndividualStatementFormComponent;
       this.filtersEvent.emit(this.filters);
     }
   }
+
+  checkMemberId() {
+    if (typeof this.filters?.member_id !== 'undefined' && this.filters.member_id>0 ) {
+      return true;
+    }
+    return false;
+  }
+
+
 }
 

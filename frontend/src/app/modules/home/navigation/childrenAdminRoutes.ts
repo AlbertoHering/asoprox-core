@@ -8,5 +8,12 @@ const childrenRoutes: Array<RouteModel> = [
     title: 'Perfil',
     policies: ["public"],
   },
+  {
+    id: 'statement-route',
+    icon: 'library_books',
+    path: '/statement',
+    title: 'Estado de cuenta',
+    policies: ["public"],
+  },
 ];
 export default childrenRoutes;

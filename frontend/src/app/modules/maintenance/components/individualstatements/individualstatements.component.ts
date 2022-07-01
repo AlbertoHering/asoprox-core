@@ -28,6 +28,7 @@ export class IndividualStatementsComponent implements OnInit {
     this.loadData();
   }
 
+  summary: IndividualStatement[] = [];
   filteredUsers?: IndividualStatementFilters[];
   individualstatements?: Array<IndividualStatement>;
   columns: Column[] = [
@@ -38,12 +39,12 @@ export class IndividualStatementsComponent implements OnInit {
     },
     {
       field: 'entry_amount_formatted',
-      title: 'Aporte',
+      title: 'Aporte individual',
       class: 'individualstatement_entryamount'
     },
     {
       field: 'company_match_amount_formatted',
-      title: 'Aporte de empresa',
+      title: 'Aporte patronal',
       class: 'individualstatement_companymatchamount'
     },
     {
@@ -81,8 +82,9 @@ export class IndividualStatementsComponent implements OnInit {
 
   applyFilters(filters: IndividualStatementFilters) {
     if (typeof filters.member_id !== 'undefined') {
+      const member_id = filters.member_id;
       this.individualstatementsService
-      .getIndividualStatement(filters.member_id)
+      .getIndividualStatement(member_id, 0)
       .pipe(
         take(1),
         tap((getIndividualStatementsResult) => {
@@ -97,6 +99,22 @@ export class IndividualStatementsComponent implements OnInit {
               });
             }
             this.individualstatements = result;
+
+            this.individualstatementsService
+              .getIndividualStatement(member_id, 1)
+              .pipe(
+                take(1),
+                tap((getIndividualSummaryResult) => {
+                  if (getIndividualSummaryResult.success && typeof getIndividualSummaryResult?.data !== 'undefined') {
+                    const result = getIndividualSummaryResult.data;
+                    result.map((r:IndividualStatement) => {
+                      r.entry_date = this.utils.formatDate(r.entry_date),
+                      r.entry_amount_formatted = this.utils.formatMoney( r.entry_amount ),
+                      r.company_match_amount_formatted = this.utils.formatMoney( r.company_match_amount ),
+                      r.total_amount_formatted = this.utils.formatMoney( +r.entry_amount + +r.company_match_amount )
+                    });
+                    this.summary = result;
+                }})).subscribe();
           }
         })
       )

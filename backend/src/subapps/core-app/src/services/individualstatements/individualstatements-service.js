@@ -18,10 +18,11 @@ exports.getIndividualStatements = async () => {
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services), 200);
 };
 
-exports.getIndividualStatement = async(member_id) => {
+exports.getIndividualStatement = async(member_id, summary) => {
   const fn = async () => {
     const individualstatementsResultset = await mySQLdb.query(individualstatementsSQLQueries.getIndividualStatement, [
-      member_id
+      member_id,
+      summary
     ]);
 
     if (!individualstatementsResultset.length) {

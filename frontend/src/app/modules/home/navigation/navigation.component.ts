@@ -23,6 +23,13 @@ export class NavigationComponent implements OnInit {
       policies: ["public"],
     },
     {
+      id: 'statement-route',
+      icon: 'library_books',
+      path: '/statement',
+      title: 'Estado de cuenta',
+      policies: ["public"],
+    },
+    {
       id: 'admin-routes',
       icon: 'pages',
       children: childrenRoutes,

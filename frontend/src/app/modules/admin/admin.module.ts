@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin/admin.component';
+import { StatementComponent } from './statement/statement.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, StatementComponent],
   exports: [SharedModule],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
 })

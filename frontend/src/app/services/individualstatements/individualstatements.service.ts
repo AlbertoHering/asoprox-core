@@ -14,8 +14,8 @@ export class IndividualStatementsService {
 
   individualstatementsServicePath = 'core/individualstatements/';
 
-  getIndividualStatement(individualstatement_id: number): Observable<APIResponse<Array<IndividualStatement>>> {
-    const url = `${serverPath}${this.individualstatementsServicePath}${individualstatement_id}`;
+  getIndividualStatement(individualstatement_id: number, summary: number): Observable<APIResponse<Array<IndividualStatement>>> {
+    const url = `${serverPath}${this.individualstatementsServicePath}${individualstatement_id}/${summary}`;
     return this.http.get<APIResponse<Array<IndividualStatement>>>(url);
   }
 

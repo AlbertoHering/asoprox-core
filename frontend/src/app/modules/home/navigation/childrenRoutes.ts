@@ -12,7 +12,7 @@ const childrenRoutes: Array<RouteModel> = [
     id: 'statements-route',
     icon: 'library_books',
     path: '/maintenance/statements',
-    title: 'Estados general',
+    title: 'Estado general',
     policies: ["public"],
   },
   {
