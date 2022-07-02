@@ -26,32 +26,33 @@ export class StatementsComponent implements OnInit {
     this.loadData();
   }
 
+  summary: Statement[] = [];
   statements?: Array<Statement>;
   filteredStatements?: Array<Statement>;
   columns: Column[] = [
     {
       field: 'full_name',
       title: 'Miembro asociado',
-      class: 'statement_fullname'
+      class: 'statements_fullname'
     },
     {
       field: 'entry_amount_formatted',
       title: 'Aporte',
-      class: 'statement_entryamount'
+      class: 'statements_entryamount'
     },
     {
       field: 'company_match_amount_formatted',
       title: 'Aporte patronal',
-      class: 'statement_companymatchamount'
+      class: 'statements_companymatchamount'
     },
     {
       field: 'total_amount_formatted',
       title: 'Aporte total',
-      class: 'statement_totalaportes'
+      class: 'statements_totalaportes'
     },
     {
       field: 'entry_date',
-      title: 'Fecha',
+      title: 'Último aporte',
       class: 'statement_entrydate'
     },
   ];
@@ -75,6 +76,23 @@ export class StatementsComponent implements OnInit {
             }
             this.statements = result;
             this.filteredStatements = result;
+
+            this.statementsService
+              .getSummary()
+              .pipe(
+                take(1),
+                tap((getSummaryResult) => {
+                  if (getSummaryResult.success && typeof getSummaryResult?.data !== 'undefined') {
+                    const result = getSummaryResult.data;
+                    result.map((r:any) => {
+                      r.entry_amount_formatted = this.utils.formatMoney( r.entry_amount ),
+                      r.company_match_amount_formatted = this.utils.formatMoney( r.company_match_amount ),
+                      r.total_amount_formatted = this.utils.formatMoney( +r.entry_amount + +r.company_match_amount )
+                    });
+                    console.log(result);
+                    this.summary = result;
+                }})).subscribe();
+
           }
         })
       )

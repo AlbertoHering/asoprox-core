@@ -11,13 +11,13 @@ import { StatementsComponent } from './components/statements/statements.componen
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, PolicyGuard],
     children: [
       {
         path: 'users',
         canActivate: [AuthGuard, PolicyGuard],
         data: {
-          policies: ["public"]
+          policies: ["admin"]
         },
         component: UsersComponent,
       },
@@ -25,7 +25,7 @@ const routes: Routes = [
         path: 'statements',
         canActivate: [AuthGuard, PolicyGuard],
         data: {
-          policies: ["public"]
+          policies: ["admin"]
         },
         component: StatementsComponent,
       },
@@ -33,7 +33,7 @@ const routes: Routes = [
         path: 'individualstatements',
         canActivate: [AuthGuard, PolicyGuard],
         data: {
-          policies: ["public"]
+          policies: ["admin"]
         },
         component: IndividualStatementsComponent,
       }

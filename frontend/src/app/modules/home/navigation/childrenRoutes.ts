@@ -6,21 +6,21 @@ const childrenRoutes: Array<RouteModel> = [
     icon: 'portrait',
     path: '/maintenance/users',
     title: 'Miembros Asociados',
-    policies: ["public"],
+    policies: ["admin"],
   },
   {
     id: 'statements-route',
     icon: 'library_books',
     path: '/maintenance/statements',
     title: 'Estado general',
-    policies: ["public"],
+    policies: ["admin"],
   },
   {
     id: 'individualstatements-route',
     icon: 'library_add',
     path: '/maintenance/individualstatements',
     title: 'Estado individual ',
-    policies: ["public"],
+    policies: ["admin"],
   },
 ];
 export default childrenRoutes;

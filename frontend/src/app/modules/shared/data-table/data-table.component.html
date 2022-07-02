@@ -1,10 +1,11 @@
 <section class="px-1">
-  <div class="table-responsible mat-elevation-z8">
+  <div class="table-responsible mat-elevation-z8 {{class}}">
     <table
       mat-table
       [dataSource]="dataSource"
       matSort
       (matSortChange)="announceSortChange($event)"
+      
     >
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef>No.</th>

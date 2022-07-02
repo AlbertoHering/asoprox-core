@@ -35,7 +35,7 @@ export class NavigationComponent implements OnInit {
       children: childrenRoutes,
       path: '',
       title: 'Admin',
-      policies: ["public"],
+      policies: ["admin"],
     },
     {
       id: 'lo',

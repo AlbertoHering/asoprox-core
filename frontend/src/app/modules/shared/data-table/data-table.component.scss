@@ -1,10 +1,8 @@
 .table-responsible {
   overflow: visible;
-  max-width: 100%;
 }
 
 table {
-  width: 100%;
   font-size: 12px;
 }
 
@@ -52,22 +50,54 @@ tr.mat-row {
     width: 32px;
   }
 
- th.statement_fullname {
-  width: 50%
+.individualstatements-table.mat-elevation-z8 {
+  max-width: 58%;
 }
-th.statement_entryamount,
-th.statement_companymatchamount,
-th.statement_totalaportes {
-  width: 8%;
+  .individualstatement_entrydate {
+    width: 12%;
+  }
+  .individualstatement_entryamount,
+  .individualstatement_companymatchamount,
+  .individualstatement_totalamount {
+    width: 20%;
+  }
+
+.users-table.mat-elevation-z8 {
+  max-width: 100%;
 }
-th.statement_entryamount button.mat-sort-header-container,
-th.statement_companymatchamount button.mat-sort-header-container,
-th.statement_totalaportes button.mat-sort-header-container {
-  float: right !important;
+.user_name,
+.user_email {
+  width: 22%;
 }
-th.statement_entrydate {
-  width: 20%;
+.user_accountaccess {
+  width: 10%;
 }
+.statement-table.mat-elevation-z8 {
+  max-width: 60%;
+}
+  .statement_entrydate {
+    width: 16%;
+  }
+  .statement_entryamount,
+  .statement_companymatchamount,
+  .statement_totalamount {
+    width: 26%;
+  }
+
+.statements-table.mat-elevation-z8 {
+  max-width: 80%;
+}
+
+  th.statements_fullname {
+    width: 40%
+  }
+  th.statements_entryamount,
+  th.statements_companymatchamount,
+  th.statements_totalaportes,
+  th.statements_entrydate {
+    width: 14%;
+  }
+
 td.mat-column-entry_amount_formatted,
 td.mat-column-company_match_amount_formatted,
 td.mat-column-total_amount_formatted {

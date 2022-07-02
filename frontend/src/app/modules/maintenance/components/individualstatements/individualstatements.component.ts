@@ -36,7 +36,7 @@ export class IndividualStatementsComponent implements OnInit {
     {
       field: 'entry_date',
       title: 'Fecha de entrada',
-      class: 'individualstatement_companymatchamount'
+      class: 'individualstatement_entrydate'
     },
     {
       field: 'entry_amount_formatted',
@@ -65,7 +65,7 @@ export class IndividualStatementsComponent implements OnInit {
           },
           label: 'Edit IndividualStatement',
           openDialog: 'dialog',
-          policies: ["public"]
+          policies: ["admin"]
         },
         {
           id: 'delete',
@@ -73,7 +73,7 @@ export class IndividualStatementsComponent implements OnInit {
             name: 'delete',
           },
           label: 'Delete IndividualStatement',
-          policies: ["public"]
+          policies: ["admin"]
         },
       ],
     },

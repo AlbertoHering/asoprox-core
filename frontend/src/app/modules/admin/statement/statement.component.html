@@ -2,10 +2,21 @@
   <div class="admin">
     <div class="intro">
       <h2>Estado de cuenta individual</h2>
-      <p>Estado de cuenta del miembro asociado a la fecha.</p>
     </div>
     <hr />
-    <div class="body">
+    <div class="body col-md-12 summary" *ngIf="summary.length>0">
+      <p><label class="label">Miembro No.:</label> <strong id="member_id">{{summary[0].member_id}}</strong></p>
+      <p><label class="label">Miembro asociado:</label> <strong>{{summary[0].full_name}}</strong></p>
+      <p><label class="label">Aporte individual:</label> <strong>{{summary[0].entry_amount_formatted}}</strong></p>
+      <p><label class="label">Aporte patronal:</label> <strong>{{summary[0].company_match_amount_formatted}}</strong></p>
+      <p><label class="label">Aporte total:</label> <strong>{{summary[0].total_amount_formatted}}</strong></p>
+      <p><label class="label">Último aporte:</label> <strong>{{summary[0].entry_date}}</strong></p>
     </div>
+    <app-data-table
+      *ngIf="statement"
+      [dataList]="statement"
+      [columns]="columns"
+      class="statement-table"
+    ></app-data-table>
   </div>
 </div>

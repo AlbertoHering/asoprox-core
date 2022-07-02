@@ -26,6 +26,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   @Input() dataList: any[] = [];
   @Input() columns: Array<Column> = [];
+  @Input() class: string = '';
 
   @Output() viewEvent = new EventEmitter<any>();
   @Output() updateEvent = new EventEmitter<any>();

@@ -33,6 +33,19 @@ exports.getStatement = async(member_id) => {
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services.toLowerCase()), 200);
 };
 
+exports.getSummary = async() => {
+  const fn = async () => {
+    const statementsResultset = await mySQLdb.query(statementsSQLQueries.getSummary);
+
+    if (!statementsResultset.length) {
+      funcWrapper.throwError(returnMessage(6, services.toLowerCase()), 404);
+    }
+
+    return statementsResultset[0];
+  };
+  return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services.toLowerCase()), 200);
+};
+
 exports.addStatement = async (statement) => {
   const fn = async () => {
     const statementsResultset = await mySQLdb.query(statementsSQLQueries.createStatement, [

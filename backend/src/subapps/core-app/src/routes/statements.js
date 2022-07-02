@@ -6,6 +6,10 @@ router.get("/statements", async (req, res) => {
   res.send(await statementsService.getStatements());
 });
 
+router.get("/statements/summary", async (req, res) => {
+  res.send(await statementsService.getSummary());
+});
+
 router.get("/statements/:statement_id", async (req, res) => {
   const { statement_id } = req.params;
   res.send(await statementsService.getStatement(statement_id));

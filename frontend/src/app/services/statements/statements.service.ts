@@ -24,6 +24,11 @@ export class StatementsService {
     return this.http.get<APIResponse<Array<Statement>>>(url);
   }
 
+  getSummary(): Observable<APIResponse<Array<Statement>>> {
+    const url = `${serverPath}${this.statementsServicePath}summary`;
+    return this.http.get<APIResponse<Array<Statement>>>(url);
+  }
+
   addStatement(statement: Statement): Observable<APIResponse<Statement>> {
     const url = serverPath + this.statementsServicePath;
     return this.http.post<APIResponse<Statement>>(url, statement);

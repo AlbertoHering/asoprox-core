@@ -67,7 +67,7 @@ export class UsersComponent implements OnInit {
           },
           label: 'Ver registro completo',
           openDialog: 'dialog',
-          policies: ["public"]
+          policies: ["admin"]
         },
         {
           id: 'update',
@@ -76,7 +76,7 @@ export class UsersComponent implements OnInit {
           },
           label: 'Editar registro',
           openDialog: 'dialog',
-          policies: ["public"]
+          policies: ["admin"]
         },
         {
           id: 'delete',
@@ -84,7 +84,7 @@ export class UsersComponent implements OnInit {
             name: 'delete',
           },
           label: 'Eliminar registro',
-          policies: ["public"]
+          policies: ["admin"]
         },
       ],
     },
