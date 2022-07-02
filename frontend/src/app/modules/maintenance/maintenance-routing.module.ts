@@ -11,7 +11,7 @@ import { StatementsComponent } from './components/statements/statements.componen
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard, PolicyGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'users',

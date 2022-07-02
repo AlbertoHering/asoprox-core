@@ -33,7 +33,7 @@ export class PolicyGuard implements CanActivate {
     return policies.pipe(map(
       (p:any[]) => {
         const appPolicy = p.filter(
-          (item: any) => next.data.policies.some( 
+          (item: any) => next.data?.policies.some( 
             (i:any) => item === i
         ));
         return appPolicy?.length ? true : false;
