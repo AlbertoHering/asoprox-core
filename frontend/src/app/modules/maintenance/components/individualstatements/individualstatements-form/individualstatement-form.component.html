@@ -1,43 +1,53 @@
-<h2 mat-dialog-title><mat-icon class="button-icon-mr">public</mat-icon>Estado de cuenta individual</h2>
+<h2 mat-dialog-title><mat-icon class="button-icon-mr">public</mat-icon>Registro de entrada</h2>
 <mat-dialog-content>
   <form [formGroup]="individualstatementForm">
     <section class="row align-items-center justify-content-center">
-      <div class="col-md-3 col-sm-1">
+      <div class="col-md-4 col-sm-1">
         <mat-form-field class="w-100 p-2">
-          <mat-label>Code</mat-label>
+          <mat-label>Monto de aporte individual</mat-label>
           <input 
             matInput 
-            formControlName="member_id" 
-            autocomplete="off" 
-            onkeyup="this.value = this.value.toUpperCase();" 
-          />
-          <mat-error *ngIf="individualstatementForm.controls['member_id'].hasError('required')"
-            >Code is required
-          </mat-error>
-          <mat-error *ngIf="individualstatementForm.controls['member_id'].hasError('maxLength')"
-            >Two characters are required
-          </mat-error>
-          <mat-error *ngIf="individualstatementForm.controls['member_id'].hasError('minLength')"
-            >Two characters are required
-          </mat-error>
-        </mat-form-field>
-      </div>      <div class="col-md-6 col-sm-1">
-        <mat-form-field class="w-200 p-2">
-          <mat-label>Name</mat-label>
-          <input
-            matInput
-            formControlName="full_name"
+            formControlName="entry_amount" 
             autocomplete="off"
-            onblur="this.value=this.value.charAt(0).toUpperCase() + this.value.slice(1);"
           />
-          <mat-error *ngIf="individualstatementForm.controls['full_name'].hasError('required')"
-            >IndividualStatement Name is required
-          </mat-error>
-          <mat-error *ngIf="individualstatementForm.controls['full_name'].hasError('maxLength')"
-            >Maximum number of characters allowed
+          <mat-error *ngIf="individualstatementForm.controls['entry_amount'].hasError('required')"
+            >Monto de aporte individual es obligatorio
           </mat-error>
         </mat-form-field>
       </div>
+      <div class="col-md-4 col-sm-1">
+        <mat-form-field class="w-100 p-2">
+          <mat-label>Monto de aporte patronal</mat-label>
+          <input 
+            matInput 
+            formControlName="company_match_amount" 
+            autocomplete="off"  
+          />
+          <mat-error *ngIf="individualstatementForm.controls['company_match_amount'].hasError('required')"
+            >Monto de aporte individual es obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 col-sm-1">
+        <mat-form-field class="w-100 p-2">
+            <mat-label>Fecha de entrada de registro</mat-label>
+            <input type="text" matInput 
+                [formControl]="dateRangeControl" 
+                [matAutocomplete]="autoDateRangeName" />
+            <mat-autocomplete #autoDateRangeName="matAutocomplete" [displayWith]="displayDateRange">
+                <mat-option 
+                    *ngFor="let dr of filteredDateRange | async" 
+                    [value]="dr.entry_date"
+                    (click)="onChangeEvent()"
+                >{{ dr.entry_date }}</mat-option>
+            </mat-autocomplete>
+            <mat-error 
+                *ngIf="individualstatementForm.controls['entry_date'].hasError('required')"
+            >La fecha de registro es obligatoria</mat-error>
+        </mat-form-field>
+    </div>
+
     </section>
   </form>
 </mat-dialog-content>

@@ -17,4 +17,5 @@ export interface IndividualStatement {
 export interface IndividualStatementFilters {
   member_id?: number,
   full_name?: string;
+  entry_date?: string;
 }

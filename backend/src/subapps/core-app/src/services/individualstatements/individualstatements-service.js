@@ -34,12 +34,26 @@ exports.getIndividualStatement = async(member_id, summary) => {
   return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services.toLowerCase()), 200);
 };
 
+exports.getDateRange = async() => {
+  const fn = async () => {
+    const daterangesResultset = await mySQLdb.query(individualstatementsSQLQueries.getDateRange);
+
+    if (!daterangesResultset.length) {
+      funcWrapper.throwError(returnMessage(6, services.toLowerCase()), 404);
+    }
+
+    return daterangesResultset[0];
+  };
+  return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services.toLowerCase()), 200);
+};
+
 exports.addIndividualStatement = async (individualstatement) => {
   const fn = async () => {
     const individualstatementsResultset = await mySQLdb.query(individualstatementsSQLQueries.createIndividualStatement, [
-      individualstatement.member_id,
-      individualstatement.entry_amount,
+      +individualstatement.member_id,
       new Date(individualstatement.entry_date),
+      +individualstatement.entry_amount,
+      +individualstatement.company_match_amount,
     ]);
 
     if (individualstatementsResultset.affectedRows < 1) {
@@ -52,20 +66,21 @@ exports.addIndividualStatement = async (individualstatement) => {
   return await funcWrapper.ExecFnAsync(fn, returnMessage(1, service), 201);
 };
 
-exports.updateIndividualStatement = async (individualstatement, individualstatement_id) => {
+exports.updateIndividualStatement = async (individualstatement) => {
   const fn = async () => {
     const individualstatementsResultset = await mySQLdb.query(individualstatementsSQLQueries.updateIndividualStatement, [
-      individualstatement_id, /** IndividualStatement ID */
-      individualstatement.member_id,
-      individualstatement.entry_amount,
+      individualstatement.id, /** IndividualStatement ID */
+      +individualstatement.member_id,
       new Date(individualstatement.entry_date),
+      +individualstatement.entry_amount,
+      +individualstatement.company_match_amount,
     ]);
 
-    if (individualstatementsResultset.ResultSetHeader?.affectedRows < 1) {
+    if (!individualstatementsResultset[0].length) {
       funcWrapper.throwError(returnMessage(3, service.toLowerCase()));
     }
 
-    return { id: individualstatement_id, ...individualstatement };
+    return { id: individualstatement.id, ...individualstatement };
   };
 
   return await funcWrapper.ExecFnAsync(fn, returnMessage(4, service.toLowerCase()), 201);
@@ -74,14 +89,16 @@ exports.updateIndividualStatement = async (individualstatement, individualstatem
 exports.deleteIndividualStatement = async (individualstatement_id) => {
   const fn = async () => {
     const individualstatementsResultset = await mySQLdb.query(individualstatementsSQLQueries.deleteIndividualStatement, [
-      individualstatement_id
+      individualstatement.id, /** IndividualStatement ID */
+      +individualstatement.member_id,
+      new Date(individualstatement.entry_date)
     ]);
 
     if (individualstatementsResultset.ResultSetHeader?.affectedRows < 1) {
       funcWrapper.throwError(returnMessage(8, service.toLowerCase()), 404);
     }
 
-    return individualstatement_id;
+    return individualstatement.id;
   };
   return await funcWrapper.ExecFnAsync(fn, returnMessage(9, service), 200);
 }

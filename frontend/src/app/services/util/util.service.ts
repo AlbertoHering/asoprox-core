@@ -17,7 +17,7 @@ export class UtilService {
   }
 
   formatDate(n: string): any {
-    return moment(new Date(n)).locale("es").format('DD[ ]MMM[ ]YYYY').toUpperCase()
+    return moment(new Date(n)).add(6, 'h').format('MM-DD-YYYY');
   }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { take, tap } from 'rxjs/operators';
+import * as moment from 'moment';
 
 import { APIResponse } from 'src/app/models/api-response';
 import { Column } from 'src/app/models/data-table';
@@ -9,7 +10,6 @@ import { IndividualStatementFormComponent } from './individualstatements-form/in
 import { IndividualStatementsService } from 'src/app/services/individualstatements/individualstatements.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
 import { UtilService } from 'src/app/services/util/util.service';
-import { User, UserFilters } from 'src/app/models/user';
 
 @Component({
   selector: 'app-individualstatements',
@@ -25,9 +25,10 @@ export class IndividualStatementsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadData();
+    this.loadData(0);
   }
 
+  member_id: number = 0;
   summary: IndividualStatement[] = [];
   filteredUsers?: IndividualStatementFilters[];
   individualstatements?: Array<IndividualStatement>;
@@ -78,13 +79,19 @@ export class IndividualStatementsComponent implements OnInit {
     },
   ];
 
-  loadData() { }
+  loadData(member_id:number) {
+    if (member_id>0) {
+      this.applyFilters({
+        member_id: member_id
+      });
+    }
+  }
 
   applyFilters(filters: IndividualStatementFilters) {
     if (typeof filters.member_id !== 'undefined') {
-      const member_id = filters.member_id;
+      this.member_id = filters.member_id;
       this.individualstatementsService
-      .getIndividualStatement(member_id, 0)
+      .getIndividualStatement(this.member_id, 0)
       .pipe(
         take(1),
         tap((getIndividualStatementsResult) => {
@@ -101,7 +108,7 @@ export class IndividualStatementsComponent implements OnInit {
             this.individualstatements = result;
 
             this.individualstatementsService
-              .getIndividualStatement(member_id, 1)
+              .getIndividualStatement(this.member_id, 1)
               .pipe(
                 take(1),
                 tap((getIndividualSummaryResult) => {
@@ -123,6 +130,19 @@ export class IndividualStatementsComponent implements OnInit {
   }
 
   updateIndividualStatement(individualstatement: IndividualStatement) {
+
+    const limit = moment().subtract(3, 'month').format('MM-DD-YYYY');
+    if (!moment(new Date(limit)).isSameOrBefore(moment(new Date(individualstatement.entry_date)))) {
+      this.toaster.openSnackBar(
+        'danger',
+        'Editar Registro',
+        'La fecha del registro tiene más de tres meses y no puede ser editada.'
+      );
+      return;
+    }
+
+    this.member_id = individualstatement.member_id;
+
     const dialogRef = this.dialog.open(IndividualStatementFormComponent, {
       data: individualstatement,
       autoFocus: false
@@ -130,7 +150,7 @@ export class IndividualStatementsComponent implements OnInit {
 
     dialogRef
       .afterClosed()
-      .subscribe((result: APIResponse<IndividualStatement>) => this.loadData());
+      .subscribe((result: APIResponse<IndividualStatement>) => this.loadData(individualstatement.member_id));
   }
 
   deleteIndividualStatement(data: IndividualStatement) {
@@ -145,7 +165,7 @@ export class IndividualStatementsComponent implements OnInit {
             deleteIndividualStatementResult.message
           );
           if (deleteIndividualStatementResult.success) {
-            this.loadData();
+            this.loadData(this.member_id);
           }
         })
       )
@@ -154,7 +174,7 @@ export class IndividualStatementsComponent implements OnInit {
 
   createIndividualStatement(individualstatement: IndividualStatement) {
     if (individualstatement) {
-      this.loadData();
+      this.loadData(this.member_id);
     }
   }
 

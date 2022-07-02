@@ -9,7 +9,6 @@ import { APIResponse } from 'src/app/models/api-response';
 import { User, UserFilters } from 'src/app/models/user';
 import { UserFormComponent } from 'src/app/modules/maintenance/components/users/user-form/user-form.component';
 import { UsersService } from 'src/app/services/users/users.service';
-import { IndividualStatement, IndividualStatementFilters } from 'src/app/models/individualstatements';
 import { IndividualStatementsService } from 'src/app/services/individualstatements/individualstatements.service';
 
 @Component({
@@ -22,7 +21,8 @@ export class StatementComponent implements OnInit {
   public routes = childrenRoutes;
   constructor(
     private cookieService: CookieService,
-    public usersService: UsersService
+    public usersService: UsersService,
+    public individualstatementsService: IndividualStatementsService
   ) { }
 
   userData?: User;

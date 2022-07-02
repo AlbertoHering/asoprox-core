@@ -31,5 +31,8 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     MaintenanceRoutingModule
   ],
+  exports: [
+    IndividualStatementsComponent
+  ]
 })
 export class MaintenanceModule { }

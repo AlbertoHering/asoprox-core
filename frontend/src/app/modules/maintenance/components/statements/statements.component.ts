@@ -24,7 +24,6 @@ export class StatementsComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-    console.log(this.statements);
   }
 
   statements?: Array<Statement>;

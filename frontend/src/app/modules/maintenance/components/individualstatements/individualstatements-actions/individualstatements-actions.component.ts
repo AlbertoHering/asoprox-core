@@ -58,7 +58,7 @@ public is = IndividualStatementFormComponent;
     dialogRef
       .afterClosed()
       .subscribe((result: APIResponse<IndividualStatement>) =>
-        this.newIndividualStatementEvent.emit(result.data)
+        this.newIndividualStatementEvent.emit(result?.data)
       );
   }
 

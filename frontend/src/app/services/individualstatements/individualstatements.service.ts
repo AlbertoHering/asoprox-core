@@ -24,6 +24,11 @@ export class IndividualStatementsService {
     return this.http.post<APIResponse<IndividualStatement>>(url, individualstatement);
   }
 
+  getDateRange(): Observable<APIResponse<Array<IndividualStatement>>> {
+    const url = serverPath + this.individualstatementsServicePath + 'date_range';
+    return this.http.get<APIResponse<Array<IndividualStatement>>>(url);
+  }
+
   updateIndividualStatement(individualstatement: IndividualStatement, id: number): Observable<APIResponse<IndividualStatement>> {
     const url = `${serverPath}${this.individualstatementsServicePath}${id}`;
     return this.http.put<APIResponse<IndividualStatement>>(url, individualstatement);
