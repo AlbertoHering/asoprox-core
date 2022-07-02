@@ -89,16 +89,16 @@ exports.updateIndividualStatement = async (individualstatement) => {
 exports.deleteIndividualStatement = async (individualstatement_id) => {
   const fn = async () => {
     const individualstatementsResultset = await mySQLdb.query(individualstatementsSQLQueries.deleteIndividualStatement, [
-      individualstatement.id, /** IndividualStatement ID */
-      +individualstatement.member_id,
-      new Date(individualstatement.entry_date)
+      individualstatement_id, /** IndividualStatement ID */
+      0,
+      new Date()
     ]);
 
-    if (individualstatementsResultset.ResultSetHeader?.affectedRows < 1) {
+    if (!individualstatementsResultset[0].length) {
       funcWrapper.throwError(returnMessage(8, service.toLowerCase()), 404);
     }
 
-    return individualstatement.id;
+    return individualstatement_id;
   };
   return await funcWrapper.ExecFnAsync(fn, returnMessage(9, service), 200);
 }
