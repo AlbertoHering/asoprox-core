@@ -39,9 +39,9 @@ export class UsersComponent implements OnInit {
       class: 'user_email'
     },
     {
-      field: 'type',
-      title: 'Junta Directiva',
-      class: 'user_type'
+      field: 'personal_email',
+      title: 'Correo electrónico personal',
+      class: 'user_email'
     },
     {
       field: 'account_access',
@@ -87,6 +87,11 @@ export class UsersComponent implements OnInit {
           policies: ["admin"]
         },
       ],
+    },
+    {
+      field: 'type',
+      title: 'Junta Directiva',
+      class: 'user_type'
     },
   ];
 

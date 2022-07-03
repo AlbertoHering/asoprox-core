@@ -66,9 +66,11 @@ tr.mat-row {
   max-width: 100%;
 }
 .user_name,
-.user_email,
-.user_type {
+.user_email {
   width: 22%;
+}
+.user_type {
+  width: 10%;
 }
 .user_accountaccess {
   width: 10%;
