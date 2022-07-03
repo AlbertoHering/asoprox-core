@@ -53,7 +53,8 @@ exports.addUser = async (user) => {
       user.email,
       user.personal_email || null,
       user.id,
-      new Date(user.initial_date)
+      new Date(user.initial_date),
+      user.admin
     ]);
 
     if (usersResultset.affectedRows < 1) {
@@ -75,7 +76,8 @@ exports.updateUser = async (user, user_id) => {
       user.personal_email || null,
       user.id,
       new Date(user.initial_date),
-      user.account_access ? 1:0
+      user.account_access ? 1:0,
+      user.admin
     ]);
 
     if (usersResultset.ResultSetHeader?.affectedRows < 1) {
@@ -102,3 +104,16 @@ exports.deleteUser = async (user_id) => {
   };
   return await funcWrapper.ExecFnAsync(fn, returnMessage(9, service), 200);
 }
+
+exports.getTypes = async () => {
+  
+  const fn = async () => {
+    const usersResultset = await mySQLdb.query(usersSQLQueries.getTypes);
+    if (!usersResultset.length) {
+      funcWrapper.throwError(returnMessage(6, services.toLowerCase()), 404);
+    }
+
+    return usersResultset;
+  };
+  return await funcWrapper.ExecFnAsync(fn, returnMessage(5, services), 200);
+};

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map, startWith, take, tap } from 'rxjs/operators';
 
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
-import { User } from 'src/app/models/user';
+import { User, UserType } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -18,6 +18,10 @@ export class UserFormComponent implements OnInit {
   readOnly: Boolean = false;
   userEdit: Boolean = false
   userForm!: FormGroup;
+
+  type: UserType[] = [];
+  filteredType?: Observable<UserType[]>;
+  typeControl = new FormControl('');
 
   constructor(
     private dialogRef: MatDialogRef<UserFormComponent>,
@@ -60,7 +64,8 @@ export class UserFormComponent implements OnInit {
       account_access: new FormControl({
         value: this.userData?.account_access || '',
         disabled: this.userEdit
-      })
+      }),
+      admin: new FormControl(this.userData?.admin || 0)
     });
 
     this.loadData();
@@ -68,10 +73,45 @@ export class UserFormComponent implements OnInit {
 
   loadData() {
 
+    this.usersService
+    .getAdmins()
+    .pipe(
+      take(1),
+      tap((getUsersResult) => {
+        if (getUsersResult.success && getUsersResult.data) {
+            this.type = getUsersResult.data;
+            const result = getUsersResult.data.find(
+              (c) => c.admin_id === this.userData?.admin
+            );
+            this.typeControl.setValue(result);
+            this.filteredType = this.typeControl.valueChanges.pipe(
+              startWith(''),
+              map((type: number) => type ? this._filterType(type) : this.type.slice())
+            );
+        }
+      })
+    )
+    .subscribe();
+
     if (this.readOnly) {
         this.userForm.disable();
-      }
+    }
 
+  }
+
+  displayType(data: UserType): string {
+    return data?.type || '';
+  }
+
+  onChangeEvent(t: UserType) {
+    this.typeControl.setValue(t);
+    this.userForm.controls['admin'].setValue(t.admin_id);
+  }
+
+  private _filterType(admin_id: number): UserType[] {
+    return this.type.filter(
+      (c) => c.admin_id === admin_id
+    );
   }
 
   onSubmit() {
@@ -80,6 +120,11 @@ export class UserFormComponent implements OnInit {
       this.userForm.value.email = this.userData?.email;
       this.userForm.value.initial_date = this.userData?.initial_date;
       this.userForm.value.account_access = this.userData?.account_access;
+      this.userForm.value.admin = this.userData?.admin;
+    }
+
+    if (!this.typeControl.value) {
+      this.userForm.value.admin = null;
     }
 
     if (!this.userData) {

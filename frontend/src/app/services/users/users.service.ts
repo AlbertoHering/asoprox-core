@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { APIResponse } from 'src/app/models/api-response';
 import { serverPath } from 'src/app/common/global';
-import { User } from 'src/app/models/user';
+import { User, UserType } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +42,11 @@ export class UsersService {
   deleteUser(id: number): Observable<APIResponse<number>> {
     const url = `${serverPath}${this.usersServicePath}${id}`;
     return this.http.delete<APIResponse<number>>(url);
+  }
+
+  getAdmins(): Observable<APIResponse<Array<UserType>>> {
+    const url = serverPath + this.usersServicePath + 'admins';
+    return this.http.get<APIResponse<Array<UserType>>>(url);
   }
 
 }

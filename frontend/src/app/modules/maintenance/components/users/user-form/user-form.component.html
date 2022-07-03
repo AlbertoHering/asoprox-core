@@ -58,12 +58,29 @@
         </mat-form-field>
       </div>
 
-      <div class="col-md-12 col-sm-1" *ngIf="!userEdit">
+      <div class="col-md-6 col-sm-1" *ngIf="!userEdit">
         <mat-checkbox formControlName="account_access" class="w-100 p-2"
           >Acceso a cuenta</mat-checkbox
         >
       </div>
-
+      <div class="col-md-6 col-sm-1" *ngIf="!userEdit">
+        <mat-form-field class="w-100 p-2">
+            <mat-label>Junta directiva</mat-label>
+            <input type="text" matInput 
+                [formControl]="typeControl" 
+                [matAutocomplete]="autoTypeName" />
+            <mat-autocomplete #autoTypeName="matAutocomplete" [displayWith]="displayType">
+                <mat-option 
+                    *ngFor="let t of filteredType | async" 
+                    [value]="t.admin_id"
+                    (click)="onChangeEvent(t)"
+                >{{ t.type }}</mat-option>
+            </mat-autocomplete>
+            <mat-error 
+                *ngIf="userForm.controls['admin'].hasError('required')"
+            >La fecha de registro es obligatoria</mat-error>
+        </mat-form-field>
+      </div>
     </section>
   </form>
 </mat-dialog-content>

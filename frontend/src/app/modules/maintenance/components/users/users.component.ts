@@ -39,9 +39,9 @@ export class UsersComponent implements OnInit {
       class: 'user_email'
     },
     {
-      field: 'personal_email',
-      title: 'Corre Electrónico Personal',
-      class: 'user_email'
+      field: 'type',
+      title: 'Junta Directiva',
+      class: 'user_type'
     },
     {
       field: 'account_access',

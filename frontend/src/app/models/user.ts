@@ -6,6 +6,8 @@ export interface User {
   initial_date: Date;
   id: number;
   account_access: boolean;
+  admin: number;
+  type: string;
   inactive: boolean;
   read_only?: boolean;
   user_edit?: boolean;
@@ -21,4 +23,9 @@ export interface UserLogin {
   email: string;
   token: string;
   policies?: any[];
+}
+
+export interface UserType {
+  admin_id: number;
+  type: string;
 }

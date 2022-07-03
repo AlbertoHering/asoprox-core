@@ -66,7 +66,7 @@ export class AdminComponent implements OnInit {
     dialogRef
       .afterClosed()
       .subscribe((event: any) => {
-        window.location.reload();
+        this.loadData();
       });
   }
 

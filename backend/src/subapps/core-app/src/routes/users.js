@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { usersService } = require("../services");
 
+router.get("/users/admins", async (req, res) => {
+  res.send(await usersService.getTypes());
+});
+
 router.get("/users", async (req, res) => {
   res.send(await usersService.getUsers());
 });
