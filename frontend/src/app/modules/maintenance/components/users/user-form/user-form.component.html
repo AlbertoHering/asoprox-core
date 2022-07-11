@@ -87,6 +87,7 @@
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close>Cancel</button>
   <button
+    *ngIf="!readOnly"
     mat-flat-button
     color="primary"
     [disabled]="!userForm.valid"

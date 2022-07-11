@@ -81,7 +81,7 @@ export class UserFormComponent implements OnInit {
         if (getUsersResult.success && getUsersResult.data) {
             this.type = getUsersResult.data;
             const result = getUsersResult.data.find(
-              (c) => c.admin_id === this.userData?.admin
+              (c:UserType) => c.admin_id === this.userData?.admin
             );
             this.typeControl.setValue(result);
             this.filteredType = this.typeControl.valueChanges.pipe(
@@ -95,6 +95,7 @@ export class UserFormComponent implements OnInit {
 
     if (this.readOnly) {
         this.userForm.disable();
+        this.typeControl.disable();
     }
 
   }
