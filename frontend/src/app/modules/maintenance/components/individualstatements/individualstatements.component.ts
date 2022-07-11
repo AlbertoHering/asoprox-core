@@ -25,6 +25,10 @@ export class IndividualStatementsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    const splash = document.getElementById('splash') as HTMLImageElement | null;
+    splash!.setAttribute("style", "display:none;opacity:0");
+
     this.loadData(0);
   }
 
@@ -88,6 +92,10 @@ export class IndividualStatementsComponent implements OnInit {
   }
 
   applyFilters(filters: IndividualStatementFilters) {
+
+    const splash = document.getElementById('splash') as HTMLImageElement | null;
+    splash!.setAttribute("style", "display:block;opacity:1;");
+
     if (typeof filters.member_id !== 'undefined') {
       this.member_id = filters.member_id;
       this.individualstatementsService
@@ -97,6 +105,9 @@ export class IndividualStatementsComponent implements OnInit {
         tap((getIndividualStatementsResult) => {
           if (getIndividualStatementsResult.success) {
             const result = getIndividualStatementsResult.data;
+            if (result?.length===0 && null!==splash) {
+                splash.setAttribute("style", "transition: visibility 0s, opacity 0.5s linear;opacity:0");
+            }
             if (typeof result !== 'undefined') {
               result.map((r:IndividualStatement) => {
                 r.entry_date = this.utils.formatDate(r.entry_date),
@@ -121,7 +132,9 @@ export class IndividualStatementsComponent implements OnInit {
                       r.total_amount_formatted = this.utils.formatMoney( +r.entry_amount + +r.company_match_amount )
                     });
                     this.summary = result;
-                }})).subscribe();
+                }})).subscribe((d:any) => {
+                  splash!.setAttribute("style", "transition: visibility 0s, opacity 0.5s linear;opacity:0");
+                });
           }
         })
       )
