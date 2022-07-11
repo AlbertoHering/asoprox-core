@@ -68,7 +68,7 @@ export class UsersComponent implements OnInit {
         {
           id: 'delete',
           icon: {
-            name: 'delete',
+            name: 'delete_forever',
           },
           label: 'Delete User',
           policies: ["public"]

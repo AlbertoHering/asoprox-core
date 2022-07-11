@@ -74,7 +74,7 @@ export class IndividualStatementsComponent implements OnInit {
         {
           id: 'delete',
           icon: {
-            name: 'delete',
+            name: 'delete_forever',
           },
           label: 'Delete IndividualStatement',
           policies: ["admin"]

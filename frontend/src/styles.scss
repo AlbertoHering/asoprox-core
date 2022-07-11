@@ -103,11 +103,13 @@ tbody td.mat-cell mat-icon.mat-icon:hover {
     transition:none;
     z-index: 100;
 }
+tbody td.mat-cell .delete_forever mat-icon.mat-icon:hover,
 tbody td.mat-cell .delete mat-icon.mat-icon:hover {
     color: #c82333;
     transition:none;
     transform: scale(1.8);
   }
+  tbody td.mat-cell .delete_forever[aria-label]:after,
   tbody td.mat-cell .delete[aria-label]:after {
     background-color: #c82333;
     transition: all 0.5s ease-out;

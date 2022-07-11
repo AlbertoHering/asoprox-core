@@ -81,7 +81,7 @@ export class UsersComponent implements OnInit {
         {
           id: 'delete',
           icon: {
-            name: 'delete',
+            name: 'delete_forever',
           },
           label: 'Eliminar registro',
           policies: ["admin"]
