@@ -53,6 +53,12 @@ export class DataTableComponent implements OnInit, AfterViewInit {
       this.dataList
     );
     this.dataSource = new MatTableDataSource<any[]>(this.dataList);
+
+    const splash = document.getElementById('splash') as HTMLImageElement | null;
+    if (null!==splash) {
+      splash.setAttribute("style", "transition: visibility 0s, opacity 0.5s linear;opacity:0");
+    }
+    
   }
 
   ngAfterViewInit() {

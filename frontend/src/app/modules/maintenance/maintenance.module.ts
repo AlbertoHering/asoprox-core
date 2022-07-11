@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { IndividualStatementFormComponent } from './components/individualstatements/individualstatements-form/individualstatement-form.component';
 import { IndividualStatementsActionsComponent } from './components/individualstatements/individualstatements-actions/individualstatements-actions.component';
 import { IndividualStatementsComponent } from './components/individualstatements/individualstatements.component';
+import { LoaderComponent } from './components/loader/loader.component';
 import { MaintenanceRoutingModule } from './maintenance-routing.module';
 import { UserFormComponent } from './components/users/user-form/user-form.component';
 import { UsersActionsComponent } from './components/users/users-actions/users-actions.component';
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     IndividualStatementFormComponent,
     IndividualStatementsActionsComponent,
     IndividualStatementsComponent,
+    LoaderComponent,
     UsersComponent, 
     UserFormComponent, 
     UsersActionsComponent,

@@ -89,7 +89,6 @@ export class StatementsComponent implements OnInit {
                       r.company_match_amount_formatted = this.utils.formatMoney( r.company_match_amount ),
                       r.total_amount_formatted = this.utils.formatMoney( +r.entry_amount + +r.company_match_amount )
                     });
-                    console.log(result);
                     this.summary = result;
                 }})).subscribe();
 

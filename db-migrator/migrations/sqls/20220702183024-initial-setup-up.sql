@@ -414,33 +414,29 @@ ELSE
 
     IF pSummary = 0 THEN
 
-SELECT
-  `t`.`member_id`,
-  `t`.`full_name`,
-  COALESCE(SUM(`t`.`entry_amount`), 0) AS `entry_amount`,
-  COALESCE(SUM(`t`.`company_match_amount`), 0) AS `company_match_amount`,
-  (SELECT
-      `entry_date`
-    FROM `statements`
-    WHERE `member_id` = `t`.`member_id`
-    ORDER BY `entry_date` DESC
-    LIMIT 1) AS `entry_date`
-FROM (SELECT
-    `s`.`member_id`,
-    `m`.`full_name`,
-    SUM(`s`.`entry_amount`) AS `entry_amount`,
-    SUM(`s`.`company_match_amount`) AS `company_match_amount`
-  FROM `members` AS `m`
-    LEFT JOIN `statements` AS `s`
-      ON (`m`.`member_id` = `s`.`member_id`)
-  WHERE `s`.`inactive` = 0
-  GROUP BY `s`.`member_id`,
-           `m`.`full_name`) AS `t`
-GROUP BY `t`.`entry_amount`,
-         `t`.`member_id`,
-         `t`.`full_name`
-ORDER BY `t`.`full_name` ASC
-;
+      SELECT    `m`.`member_id`, 
+                `m`.`full_name`, 
+                COALESCE(SUM(`t`.`entry_amount`), 0) AS `entry_amount`,
+                COALESCE(SUM(`t`.`company_match_amount`), 0) AS `company_match_amount`, (
+                  SELECT    `entry_date` 
+                  FROM      `statements` 
+                  WHERE     `member_id` = `t`.`member_id` 
+                  ORDER BY  `entry_date` DESC 
+                  LIMIT 1
+                ) AS `entry_date`
+      FROM      `members` AS `m`
+      LEFT JOIN ( SELECT      `s`.`member_id`,
+                              SUM(`s`.`entry_amount`) AS `entry_amount`,
+                              SUM(`s`.`company_match_amount`) AS `company_match_amount`
+                  FROM        `members` AS `m`
+                    LEFT JOIN `statements` AS `s`
+                      ON      (`m`.`member_id` = `s`.`member_id`)
+                  WHERE       `s`.`inactive` = 0
+                  GROUP BY    `s`.`member_id`
+                ) AS `t` ON (`m`.`member_id` = `t`.`member_id`)
+      GROUP BY `t`.`entry_amount`, `m`.`member_id`, `m`.`full_name`
+      ORDER BY `m`.`full_name` ASC
+      ;
 
 ELSE
 

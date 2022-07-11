@@ -104,7 +104,6 @@ export class UserFormComponent implements OnInit {
   }
 
   onChangeEvent(t: UserType) {
-    this.typeControl.setValue(t);
     this.userForm.controls['admin'].setValue(t.admin_id);
   }
 

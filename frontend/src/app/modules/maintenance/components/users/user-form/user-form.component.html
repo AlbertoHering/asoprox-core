@@ -72,7 +72,7 @@
             <mat-autocomplete #autoTypeName="matAutocomplete" [displayWith]="displayType">
                 <mat-option 
                     *ngFor="let t of filteredType | async" 
-                    [value]="t.admin_id"
+                    [value]="t"
                     (click)="onChangeEvent(t)"
                 >{{ t.type }}</mat-option>
             </mat-autocomplete>
