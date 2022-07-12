@@ -127,7 +127,8 @@ END IF;
   IF EXISTS ( SELECT
     1
   FROM `members` AS `m`
-  WHERE `m`.`admin` IS NOT NULL) THEN
+  WHERE `m`.`admin` IS NOT NULL
+    AND       `member_id` = pMemberId) THEN
 
 INSERT INTO `Policy`
   SELECT
