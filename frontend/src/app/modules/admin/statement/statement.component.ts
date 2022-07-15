@@ -17,6 +17,9 @@ import { UtilService } from 'src/app/services/util/util.service';
   styleUrls: ['./statement.component.scss'],
 })
 export class StatementComponent implements OnInit {
+
+  title: string = 'Estado de cuenta individual';
+
   constructor(
     private cookieService: CookieService,
     public individualStatementService: IndividualStatementsService, 

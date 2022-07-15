@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AboutComponent } from './components/about/about.component';
 import { AuthGuard } from 'src/app/guards/auth/auth.guard';
 import { PolicyGuard } from 'src/app/guards/policy/policy.guard';
 import { UsersComponent } from './components/users/users.component';
@@ -36,6 +37,14 @@ const routes: Routes = [
           policies: ["admin"]
         },
         component: IndividualStatementsComponent,
+      },
+      {
+        path: 'about',
+        canActivate: [AuthGuard, PolicyGuard],
+        data: {
+          policies: ["admin"]
+        },
+        component: AboutComponent,
       }
     ]
   }

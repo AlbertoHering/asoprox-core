@@ -15,6 +15,9 @@ import { UsersService } from 'src/app/services/users/users.service';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
+
+  title: string = 'Miembros Asociados';
+
   constructor(
     public usersService: UsersService,
     public dialog: MatDialog,

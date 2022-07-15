@@ -19,11 +19,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './confirmation-dialog/confirm-dialog.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { appPolicyDirective } from 'src/app/directives/app.policy/app.policy.directive';
+import { PageTitleComponent } from '../maintenance/components/page-title/page-title.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { ToasterComponent } from './toaster/toaster.component';
 
 @NgModule({
-  declarations: [ConfirmDialogComponent, appPolicyDirective, DataTableComponent, ToasterComponent],
+  declarations: [ConfirmDialogComponent, appPolicyDirective, DataTableComponent, ToasterComponent, PageTitleComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -64,6 +65,7 @@ import { ToasterComponent } from './toaster/toaster.component';
     MatSortModule,
     ReactiveFormsModule,
     ToasterComponent,
+    PageTitleComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

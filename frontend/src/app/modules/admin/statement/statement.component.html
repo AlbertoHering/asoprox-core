@@ -1,9 +1,6 @@
+<app-page-title [title]="title"></app-page-title>
 <div class="footer">
   <div class="admin">
-    <div class="intro">
-      <h2>Estado de cuenta individual</h2>
-    </div>
-    <hr />
     <div class="body col-md-12 summary" *ngIf="summary.length>0">
       <p><label class="label">Miembro No.:</label> <strong id="member_id">{{summary[0].member_id}}</strong></p>
       <p><label class="label">Miembro asociado:</label> <strong>{{summary[0].full_name}}</strong></p>

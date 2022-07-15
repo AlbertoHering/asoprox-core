@@ -15,6 +15,9 @@ import { UtilService } from 'src/app/services/util/util.service';
   styleUrls: ['./statements.component.scss'],
 })
 export class StatementsComponent implements OnInit {
+
+  title: string = 'Estados de cuenta general';
+
   constructor(
     public statementsService: StatementsService,
     public dialog: MatDialog,

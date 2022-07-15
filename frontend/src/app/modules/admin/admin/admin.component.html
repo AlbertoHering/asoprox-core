@@ -1,10 +1,6 @@
+<app-page-title [title]="title"></app-page-title>
 <div class="footer">
   <div class="admin">
-    <div class="intro">
-      <h1>Perfil</h1>
-      <p>Perfil del miembro asociado</p>
-    </div>
-    <hr />
     <div class="body">
       <dl>
         <dt>Nombre</dt><dd>{{ userData?.full_name }}</dd>
@@ -14,7 +10,7 @@
         <dt>Fecha de afiliación</dt><dd>{{ initialDate }}</dd>
       </dl>
       <button mat-raised-button color="primary" (click)="openForm()">
-        <mat-icon class="button-icon-mr">edit</mat-icon>Editar
+        <mat-icon class="button-icon-mr">edit</mat-icon>Editar Datos
       </button>
     </div>
   </div>

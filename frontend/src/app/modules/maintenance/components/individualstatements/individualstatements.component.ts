@@ -17,6 +17,9 @@ import { UtilService } from 'src/app/services/util/util.service';
   styleUrls: ['./individualstatements.component.scss'],
 })
 export class IndividualStatementsComponent implements OnInit {
+
+  title: string = 'Estado de cuenta individual';
+
   constructor(
     public individualstatementsService: IndividualStatementsService, 
     public dialog: MatDialog,

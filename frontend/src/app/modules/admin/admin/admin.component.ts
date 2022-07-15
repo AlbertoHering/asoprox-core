@@ -17,6 +17,8 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class AdminComponent implements OnInit {
 
+  title: string = 'Perfil de Miembro Asociado';
+
   @Output() updateEvent = new EventEmitter<User>();
 
   public routes = childrenRoutes;

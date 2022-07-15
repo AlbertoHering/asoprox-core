@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AboutComponent } from './components/about/about.component';
 import { IndividualStatementFormComponent } from './components/individualstatements/individualstatements-form/individualstatement-form.component';
 import { IndividualStatementsActionsComponent } from './components/individualstatements/individualstatements-actions/individualstatements-actions.component';
 import { IndividualStatementsComponent } from './components/individualstatements/individualstatements.component';
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
+    AboutComponent,
     IndividualStatementFormComponent,
     IndividualStatementsActionsComponent,
     IndividualStatementsComponent,

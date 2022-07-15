@@ -137,8 +137,8 @@ END IF;
     1
   FROM `members` AS `m`
     INNER JOIN `admins` AS `a`
-      ON (`m`.`member_id` = `a`.`member_id`)
-  WHERE `a`.`member_id` = pMemberId) THEN
+      ON (`m`.`admin_id` = `a`.`admin_id`)
+  WHERE `m`.`member_id` = pMemberId) THEN
 
 INSERT INTO `Policy`
   SELECT

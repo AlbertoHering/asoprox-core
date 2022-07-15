@@ -22,5 +22,12 @@ const childrenRoutes: Array<RouteModel> = [
     title: 'Estado individual ',
     policies: ["admin"],
   },
+  {
+    id: 'about-route',
+    icon: 'info',
+    path: '/maintenance/about',
+    title: 'ASOPROX',
+    policies: ["admin"],
+  },
 ];
 export default childrenRoutes;
