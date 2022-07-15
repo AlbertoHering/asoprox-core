@@ -65,7 +65,7 @@ export class UserFormComponent implements OnInit {
         value: this.userData?.account_access || '',
         disabled: this.userEdit
       }),
-      admin: new FormControl(this.userData?.admin || 0)
+      admin: new FormControl(this.userData?.admin_id || 0)
     });
 
     this.loadData();
@@ -77,11 +77,11 @@ export class UserFormComponent implements OnInit {
     .getAdmins()
     .pipe(
       take(1),
-      tap((getUsersResult) => {
+      tap((getUsersResult: any[any]) => {
         if (getUsersResult.success && getUsersResult.data) {
             this.type = getUsersResult.data;
             const result = getUsersResult.data.find(
-              (c:UserType) => c.admin_id === this.userData?.admin
+              (c:UserType) => c.admin_id === this.userData?.admin_id
             );
             this.typeControl.setValue(result);
             this.filteredType = this.typeControl.valueChanges.pipe(
@@ -120,7 +120,7 @@ export class UserFormComponent implements OnInit {
       this.userForm.value.email = this.userData?.email;
       this.userForm.value.initial_date = this.userData?.initial_date;
       this.userForm.value.account_access = this.userData?.account_access;
-      this.userForm.value.admin = this.userData?.admin;
+      this.userForm.value.admin = this.userData?.admin_id;
     }
 
     if (!this.typeControl.value) {

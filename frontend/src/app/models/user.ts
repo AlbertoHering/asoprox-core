@@ -6,7 +6,7 @@ export interface User {
   initial_date: Date;
   id: number;
   account_access: boolean;
-  admin: number;
+  admin_id: number;
   type: string;
   inactive: boolean;
   read_only?: boolean;

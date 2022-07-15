@@ -76,8 +76,8 @@ exports.updateUser = async (user, user_id) => {
       user.personal_email || null,
       user.id,
       new Date(user.initial_date),
-      user.account_access ? 1:0,
-      user.admin
+      user.admin,
+      user.account_access ? 1:0
     ]);
 
     if (usersResultset.ResultSetHeader?.affectedRows < 1) {
