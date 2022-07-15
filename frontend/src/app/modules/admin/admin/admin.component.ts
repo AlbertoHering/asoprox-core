@@ -17,8 +17,6 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class AdminComponent implements OnInit {
 
-  title: string = 'Perfil de Miembro Asociado';
-
   @Output() updateEvent = new EventEmitter<User>();
 
   public routes = childrenRoutes;
@@ -35,6 +33,8 @@ export class AdminComponent implements OnInit {
     user: this.currentUser.full_name,
     id: this.currentUser.id
   };
+
+  title: string = `Perfil de Miembro Asociado: ${this.admin.user}`;
 
   ngOnInit() {
     this.loadData();
