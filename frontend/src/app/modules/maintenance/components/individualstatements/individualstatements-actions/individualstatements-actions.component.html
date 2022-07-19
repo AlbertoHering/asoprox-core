@@ -1,25 +1,39 @@
 <section class="row px-1 pb-4 align-items-center text-left">
-
   <div class="col-md-2">
-    <mat-form-field>
+    <mat-form-field class="w-100 p-2">
       <mat-label>Miembros asociados</mat-label>
-      <mat-select
-        [(ngModel)]="filteredUsers"
-        (selectionChange)="applyFilters()"
+      <input type="text" matInput 
+        [formControl]="userControl" 
+        [matAutocomplete]="autoUserName" />
+      <mat-autocomplete #autoUserName="matAutocomplete" 
+        [displayWith]="displayUser">
+          <mat-option *ngFor="let user of filteredUsers | async" 
+              [value]="user"
+              (click)="onChangeEvent()"
+              (keyup)="onChangeEvent()"
+              >
+              {{ user.full_name }}
+          </mat-option>
+      </mat-autocomplete>
+      <button
+        mat-button
+        *ngIf="userControl.value.member_id"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearData()"
       >
-        <mat-option
-          *ngFor="let user of users"
-          [value]="user.member_id"
-          >{{ user.full_name }}</mat-option
-        >
-      </mat-select>
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
   </div>
 
-  <div class="col-sm" *appPolicy='["admin"]'>
-    <button mat-raised-button color="primary" (click)="openForm()" *ngIf="checkMemberId()">
-      <mat-icon class="button-icon-mr">library_add </mat-icon>Agregar entrada
-    </button>
-  </div>
+  <ng-container *ngIf="userControl.value">
+    <div class="col-sm" *appPolicy='["admin"]'>
+      <button mat-raised-button color="primary" (click)="openForm()" *ngIf="checkMemberId()">
+        <mat-icon class="button-icon-mr">library_add </mat-icon>Agregar entrada
+      </button>
+    </div>
+  </ng-container>
 
 </section>

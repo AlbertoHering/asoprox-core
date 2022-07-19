@@ -102,12 +102,14 @@ export class IndividualStatementFormComponent implements OnInit {
 
   onSubmit() {
 
-    const member_id = document.getElementById('member_id') as HTMLElement | null;
+    const member = document.getElementById('member_id') as HTMLDivElement;
+    const member_id = member.getAttribute('data-value');
+
     if (null===member_id) {
       /** Nothing to do */
     } else {
 
-      this.individualstatementForm.controls['member_id'].setValue(member_id!.innerText);
+      this.individualstatementForm.controls['member_id'].setValue(member_id);
 
       if (!this.individualstatementData) {
         this.individualstatementsService

@@ -25,7 +25,7 @@ export class IndividualStatementsComponent implements OnInit {
     public dialog: MatDialog,
     private toaster: ToasterService,
     private utils: UtilService
-  ) {}
+  ) { }
 
   ngOnInit() {
 
@@ -37,6 +37,7 @@ export class IndividualStatementsComponent implements OnInit {
 
   member_id: number = 0;
   summary: IndividualStatement[] = [];
+  displaySummary: Boolean = false;
   filteredUsers?: IndividualStatementFilters[];
   individualstatements?: Array<IndividualStatement>;
   columns: Column[] = [
@@ -100,6 +101,13 @@ export class IndividualStatementsComponent implements OnInit {
     splash!.setAttribute("style", "display:block;opacity:1;");
 
     if (typeof filters.member_id !== 'undefined') {
+
+      const member_id = document.getElementById('member_id') as HTMLDivElement;
+      member_id!.setAttribute('data-value', this.member_id.toString());
+
+      if (filters.member_id!==0) {
+        this.displaySummary = true;
+
       this.member_id = filters.member_id;
       this.individualstatementsService
       .getIndividualStatement(this.member_id, 0)
@@ -142,6 +150,9 @@ export class IndividualStatementsComponent implements OnInit {
         })
       )
       .subscribe();
+      } else {
+        this.displaySummary = false;
+      }
     }
   }
 
