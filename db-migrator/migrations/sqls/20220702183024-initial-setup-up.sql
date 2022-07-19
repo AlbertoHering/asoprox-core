@@ -407,9 +407,7 @@ FROM (SELECT
       ON (`m`.`member_id` = `s`.`member_id`)
   WHERE `s`.`member_id` = pMemberId
   AND `s`.`inactive` = 0
-  GROUP BY `s`.`member_id`,
-           `s`.`entry_date`,
-           `m`.`full_name`) AS `t`
+  GROUP BY `s`.`member_id`) AS `t`
 WHERE `t`.`member_id` = pMemberId
 GROUP BY `t`.`member_id`,
          `t`.`full_name`
@@ -587,10 +585,10 @@ DELIMITER ;
 INSERT INTO admins VALUES
 (1, 'Presidencia', 0, 0),
 (2, 'Vicepresidencia', 1, 0),
-(3, 'Secretaría', 2, 0),
-(4, 'Tesorería', 3, 0),
-(5, 'Vocalía', 4, 0),
-(6, 'Fiscalía', 5, 0),
+(3, 'Secretarï¿½a', 2, 0),
+(4, 'Tesorerï¿½a', 3, 0),
+(5, 'Vocalï¿½a', 4, 0),
+(6, 'Fiscalï¿½a', 5, 0),
 (7, 'Admin', 6, 0);
 
 -- 
@@ -605,12 +603,12 @@ INSERT INTO members VALUES
 (6, 'Marcela Aguilar Cabezas', 'marcela.aguilar@10pearls.com ', NULL, 113310755, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 0),
 (7, 'Fabricio Jose Duarte Picado', 'fabricio.duarte@10pearls.com', NULL, 109840918, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 1),
 (8, 'Sebastian Antonio Arroyo Viquez', 'sebastian.arroyo@10pearls.com', NULL, 113990265, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 1),
-(9, 'Claudia Melania Quesada Acuña', 'claudia.quesada@10pearls.com', NULL, 110980227, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 0),
+(9, 'Claudia Melania Quesada Acuï¿½a', 'claudia.quesada@10pearls.com', NULL, 110980227, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 0),
 (10, 'Evelyn Vanessa Hernandez Blanco', 'evelyn.hernandez@10pearls.com', NULL, 112270232, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', 3, 0),
 (11, 'Jonathan Watson Coto', 'jonathan.watson@10pearls.com', NULL, 115040108, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 0),
 (12, 'Michael Francisco Gonzalez Sanchez', 'michael.gonzalez@10pearls.com', NULL, 110210222, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', 1, 0),
 (13, 'Emilia Maria Vega Lacayo', 'emilia.vega@10pearls.com', NULL, 701290225, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 1),
-(14, 'Luis Diego Zuñiga Vargas', 'diego.zuniga@10pearls.com', NULL, 207520283, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 1),
+(14, 'Luis Diego Zuï¿½iga Vargas', 'diego.zuniga@10pearls.com', NULL, 207520283, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 1),
 (15, 'Raquel Lugo Arguedas', 'raquel.lugo@10pearls.com', NULL, 116210329, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 0),
 (16, 'Jorge Antonio Solano Morales', 'jorge.solano@10pearls.com', NULL, 110790041, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 0),
 (17, 'Norvin Alberto Martinez Romero', 'norvin.martinez@10pearls.com', NULL, 155814134213, '2022-06-26', 1, NULL, '2022-06-26 22:38:40', NULL, 0),
