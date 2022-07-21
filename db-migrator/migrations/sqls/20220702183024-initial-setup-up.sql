@@ -46,9 +46,7 @@ CREATE TABLE policies (
 )
 ENGINE = INNODB,
 AUTO_INCREMENT = 5,
-AVG_ROW_LENGTH = 16384,
-CHARACTER SET utf8mb4,
-COLLATE utf8mb4_0900_ai_ci;
+AVG_ROW_LENGTH = 16384;
 
 --
 -- Create table `admins`
@@ -62,9 +60,7 @@ CREATE TABLE admins (
 )
 ENGINE = INNODB,
 AUTO_INCREMENT = 9,
-AVG_ROW_LENGTH = 4681,
-CHARACTER SET utf8mb4,
-COLLATE utf8mb4_0900_ai_ci;
+AVG_ROW_LENGTH = 4681;
 
 --
 -- Create index `UK_options_option` on table `admins`
@@ -91,9 +87,7 @@ CREATE TABLE members (
 )
 ENGINE = INNODB,
 AUTO_INCREMENT = 32,
-AVG_ROW_LENGTH = 528,
-CHARACTER SET utf8mb4,
-COLLATE utf8mb4_0900_ai_ci;
+AVG_ROW_LENGTH = 528;
 
 --
 -- Create foreign key
@@ -108,7 +102,6 @@ DELIMITER $$
 -- Create procedure `getUserPolicies`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE getUserPolicies(
 IN pMemberId INT
 )
@@ -160,7 +153,6 @@ $$
 -- Create procedure `getMember`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE getMember(IN pMemberId INT)
 BEGIN
 
@@ -225,7 +217,6 @@ $$
 -- Create procedure `getAuthenticateUser`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE getAuthenticateUser(
 IN pEmail VARCHAR(200)
 )
@@ -248,7 +239,6 @@ $$
 -- Create procedure `crudMember`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE crudMember(
 
 IN pMemberId INT, 
@@ -341,16 +331,14 @@ CREATE TABLE statements (
 )
 ENGINE = INNODB,
 AUTO_INCREMENT = 8,
-AVG_ROW_LENGTH = 4096,
-CHARACTER SET utf8mb4,
-COLLATE utf8mb4_0900_ai_ci;
+AVG_ROW_LENGTH = 4096;
 
 --
 -- Create foreign key
 --
 ALTER TABLE statements 
   ADD CONSTRAINT FK_statements_member_id FOREIGN KEY (member_id)
-    REFERENCES members(member_id);
+    REFERENCES members(member_id) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 DELIMITER $$
 
@@ -358,7 +346,6 @@ DELIMITER $$
 -- Create procedure `getStatement`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE getStatement(
 IN pMemberId INT,
 IN pSummary TINYINT
@@ -439,9 +426,7 @@ FROM (SELECT
     LEFT JOIN `statements` AS `s`
       ON (`m`.`member_id` = `s`.`member_id`)
   WHERE `s`.`inactive` = 0
-  GROUP BY `s`.`member_id`,
-           `s`.`entry_date`,
-           `m`.`full_name`) AS `t`
+  GROUP BY `s`.`member_id`) AS `t`
 GROUP BY `t`.`entry_amount`,
          `t`.`member_id`,
          `t`.`full_name`
@@ -458,7 +443,6 @@ $$
 -- Create procedure `crudIndividualStatement`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE crudIndividualStatement(
   IN pStatementId INT,
   IN pMemberId INT,
@@ -512,7 +496,6 @@ $$
 -- Create procedure `getOptions`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE getOptions(IN pOptionName VARCHAR(45))
 BEGIN
 
@@ -534,7 +517,6 @@ $$
 -- Create procedure `getDateRange`
 --
 CREATE 
-	DEFINER = 'root'@'%'
 PROCEDURE getDateRange()
 BEGIN
 	DROP TEMPORARY TABLE IF EXISTS `Variables`;

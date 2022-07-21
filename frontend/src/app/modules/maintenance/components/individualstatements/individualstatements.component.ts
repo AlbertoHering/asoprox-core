@@ -109,6 +109,8 @@ export class IndividualStatementsComponent implements OnInit {
         this.displaySummary = true;
 
       this.member_id = filters.member_id;
+      member_id!.setAttribute('data-value', this.member_id.toString());
+
       this.individualstatementsService
       .getIndividualStatement(this.member_id, 0)
       .pipe(
