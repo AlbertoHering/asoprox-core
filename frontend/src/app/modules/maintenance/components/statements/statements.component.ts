@@ -16,7 +16,7 @@ import { UtilService } from 'src/app/services/util/util.service';
 })
 export class StatementsComponent implements OnInit {
 
-  title: string = 'Estados de cuenta general';
+  title: string = 'Estado de cuenta general';
 
   constructor(
     public statementsService: StatementsService,
