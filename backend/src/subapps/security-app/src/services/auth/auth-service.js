@@ -4,13 +4,13 @@ const { mySQLdb } = require("../../../../../integrations");
 
 exports.authenticateUser = async (user) => {
   const fn = async () => {
-    const domain = user.email.substr(user.email.indexOf("@"));
-    if (!["@10pearls.com"].includes(domain)) {
+/*     const domain = user.email.substr(user.email.indexOf("@"));
+    if (!["@encora.com"].includes(domain)) {
       funcWrapper.throwError(
-        "Invalid account, it should be a 10pearls account",
+        "Invalid account, it should be a Encora account",
         404
       );
-    }
+    } */
     const params = [user.email];
     const authUser = await mySQLdb.query(
       authSQLQueries.authenticateUser,

@@ -21,16 +21,16 @@
 --
 SET NAMES 'utf8';
 
-DROP DATABASE IF EXISTS `asoprox-core-db`;
+DROP DATABASE IF EXISTS `asocore-core-db`;
 
-CREATE DATABASE `asoprox-core-db`
+CREATE DATABASE `asocore-core-db`
 	CHARACTER SET utf8mb4
 	COLLATE utf8mb4_0900_ai_ci;
 
 --
 -- Set default database
 --
-USE `asoprox-core-db`;
+USE `asocore-core-db`;
 
 --
 -- Create table `policies`

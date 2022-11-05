@@ -26,7 +26,7 @@ const childrenRoutes: Array<RouteModel> = [
     id: 'about-route',
     icon: 'info',
     path: '/maintenance/about',
-    title: 'ASOPROX',
+    title: 'ASOCORE',
     policies: ["admin"],
   },
 ];

@@ -6,9 +6,9 @@
     },
     "dev": {
         "host":"localhost",
-        "user": "root",
-        "password": "password",
-        "database": "asoprox-core-db",
+        "user": "asocore",
+        "password": "123456",
+        "database": "asocore-core-db",
         "driver": "mysql",
         "port": "3306",
         "multipleStatements": true
